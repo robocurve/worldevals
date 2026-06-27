@@ -1,0 +1,77 @@
+<div align="center">
+
+# 🌍 WorldEvals
+
+**The [Inspect Evals](https://inspect.aisi.org.uk/evals/) for robotics.**
+
+A curated catalog of physical-AI / VLA benchmarks built on
+[RoboLens](https://github.com/robocurve/robolens).
+
+[![CI](https://github.com/robocurve/worldevals/actions/workflows/ci.yml/badge.svg)](https://github.com/robocurve/worldevals/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+[![Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)](https://github.com/robocurve/worldevals/actions/workflows/ci.yml)
+[![Built on RoboLens](https://img.shields.io/badge/built%20on-RoboLens-indigo)](https://github.com/robocurve/robolens)
+
+</div>
+
+[RoboLens](https://github.com/robocurve/robolens) is the *framework* (the "Inspect
+AI for robotics"). **WorldEvals is the collection** — but unlike Inspect Evals'
+monorepo, each benchmark here lives in **its own repository** so it owns its
+release cadence, dependencies, hardware notes, and leaderboard. WorldEvals is the
+lightweight index that ties them together: what benchmarks exist, what tasks each
+provides, and how to install them.
+
+- `robolens list` tells you what's **installed**.
+- `worldevals list` tells you what **exists** and how to get it.
+
+## Benchmarks
+
+| Benchmark | Tasks | Tags | Status |
+|---|--:|---|---|
+| [KitchenBench](https://github.com/robocurve/kitchenbench) — 10 bimanual kitchen-manipulation tasks | 10 | kitchen, bimanual, manipulation | alpha |
+
+## Install & use
+
+```bash
+pip install "worldevals @ git+https://github.com/robocurve/worldevals"
+
+worldevals list                 # all benchmarks
+worldevals list --tag bimanual  # filter by tag
+worldevals info kitchenbench    # repo, install command, task keys
+worldevals tasks                # RoboLens tasks installed locally, by benchmark
+```
+
+Then install a benchmark and run it through RoboLens:
+
+```bash
+pip install "kitchenbench @ git+https://github.com/robocurve/kitchenbench"
+robolens run --task kitchenbench/pour_pasta --policy kitchen_scripted --embodiment kitchen
+```
+
+## Add your benchmark
+
+A benchmark is any repo that:
+
+1. depends on `robolens`,
+2. defines one or more RoboLens `Task`s, and
+3. registers them via `[project.entry-points."robolens.tasks"]` (and, if it ships
+   a sim/embodiment or policy, `robolens.embodiments` / `robolens.policies`).
+
+To list it here, add a `Benchmark(...)` entry to
+[`src/worldevals/catalog.py`](src/worldevals/catalog.py) and open a PR. A test
+validates every entry (unique name, well-formed repo URL, ≥1 task key). See
+[KitchenBench](https://github.com/robocurve/kitchenbench) as the reference
+implementation.
+
+## Development
+
+```bash
+uv venv && uv pip install -e ".[dev]"     # robolens resolved from the v0.1.0 tag
+uv run pre-commit install
+uv run pytest --cov                        # 100% coverage required
+uv run ruff check . && uv run mypy
+```
+
+## License
+
+[MIT](LICENSE)

@@ -1,0 +1,79 @@
+[build-system]
+requires = ["hatchling>=1.18"]
+build-backend = "hatchling.build"
+
+[project]
+name = "worldevals"
+version = "0.1.0"
+description = "The Inspect Evals for robotics — a curated catalog of physical-AI benchmarks built on RoboLens."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "RoboCurve" }]
+keywords = ["robotics", "benchmarks", "vla", "evaluation", "catalog", "physical-ai"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Typing :: Typed",
+]
+dependencies = ["robolens>=0.1"]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-cov>=5.0",
+    "ruff>=0.6",
+    "mypy>=1.11",
+    "pre-commit>=3.5",
+]
+
+[project.scripts]
+worldevals = "worldevals.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/robocurve/worldevals"
+Framework = "https://github.com/robocurve/robolens"
+
+[tool.uv.sources]
+robolens = { git = "https://github.com/robocurve/robolens", tag = "v0.1.0" }
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/worldevals"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "C4", "SIM", "RUF"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["worldevals"]
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+files = ["src/worldevals"]
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+testpaths = ["tests"]
+addopts = "-ra --strict-markers"
+
+[tool.coverage.run]
+branch = true
+source = ["worldevals"]
+
+[tool.coverage.report]
+fail_under = 100
+show_missing = true
+exclude_also = [
+    "if TYPE_CHECKING:",
+    "if __name__ == .__main__.:",
+    "pragma: no cover",
+]
