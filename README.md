@@ -12,6 +12,8 @@ A curated catalog of physical-AI / VLA benchmarks built on
 [![Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)](https://github.com/robocurve/worldevals/actions/workflows/ci.yml)
 [![Built on RoboLens](https://img.shields.io/badge/built%20on-RoboLens-indigo)](https://github.com/robocurve/robolens)
 
+**[📖 Browse the catalog → robocurve.github.io/worldevals](https://robocurve.github.io/worldevals/)**
+
 </div>
 
 [RoboLens](https://github.com/robocurve/robolens) is the *framework* (the "Inspect

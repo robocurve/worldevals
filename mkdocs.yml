@@ -1,0 +1,96 @@
+site_name: WorldEvals
+site_description: >-
+  The Inspect Evals for robotics — a curated catalog of physical-AI benchmarks
+  built on RoboLens.
+site_url: https://robocurve.github.io/worldevals/
+repo_url: https://github.com/robocurve/worldevals
+repo_name: robocurve/worldevals
+edit_uri: edit/main/docs/
+copyright: Copyright &copy; RoboCurve
+
+theme:
+  name: material
+  icon:
+    logo: material/earth
+    repo: fontawesome/brands/github
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: teal
+      accent: teal
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: teal
+      accent: teal
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.top
+    - navigation.footer
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.action.edit
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+plugins:
+  - search
+  # The homepage (index.md) is generated from worldevals.catalog at build time.
+  - gen-files:
+      scripts:
+        - scripts/gen_catalog.py
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [src]
+          options:
+            docstring_style: sphinx
+            show_root_heading: true
+            show_root_full_path: false
+            show_symbol_type_heading: true
+            members_order: source
+            separate_signature: true
+            show_signature_annotations: true
+            filters: ["!^_"]
+  - llmstxt:
+      markdown_description: >-
+        WorldEvals is the "Inspect Evals for robotics": a curated catalog of
+        physical-AI / VLA benchmarks built on RoboLens. Each benchmark is its own
+        repo; WorldEvals indexes what exists and how to install it.
+      full_output: llms-full.txt
+      sections:
+        Catalog:
+          - index.md
+          - contributing.md
+
+nav:
+  - Home: index.md
+  - Add a benchmark: contributing.md
+  - API reference: api.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/robocurve/worldevals

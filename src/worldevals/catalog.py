@@ -2,7 +2,8 @@
 
 Each benchmark is its own repository (built on RoboLens) that registers its tasks
 via entry points. WorldEvals indexes them so you can discover what exists and how
-to install it. To add a benchmark, append a :class:`Benchmark` entry here (PR).
+to install it. To add a benchmark, append a
+[`Benchmark`][worldevals.catalog.Benchmark] entry here (PR).
 """
 
 from __future__ import annotations
@@ -65,7 +66,7 @@ def catalog() -> tuple[Benchmark, ...]:
 
 
 def get(name: str) -> Benchmark:
-    """Look up a benchmark by name; raise :class:`KeyError` if unknown."""
+    """Look up a benchmark by name; raise `KeyError` if unknown."""
     for benchmark in CATALOG:
         if benchmark.name == name:
             return benchmark
