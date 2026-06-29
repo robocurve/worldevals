@@ -50,6 +50,20 @@ pip install "kitchenbench @ git+https://github.com/robocurve/kitchenbench"
 robolens run --task kitchenbench/pour_pasta --policy kitchen_scripted --embodiment kitchen
 ```
 
+## Backends (run on real robots)
+
+Benchmarks are embodiment-agnostic; **backend adapters** supply a concrete
+`Policy` + `Embodiment` so a benchmark runs on real hardware or a simulator.
+These are their own repos too (not catalog entries):
+
+| Adapter | Policy · Embodiment | Stack |
+|---|---|---|
+| [robolens-yam](https://github.com/robocurve/robolens-yam) | `molmoact2` · `yam_arms` | [MolmoAct2](https://github.com/allenai/molmoact2) on [I2RT YAM](https://i2rt.com/products/yam-6-dof-arm) bimanual arms |
+
+```bash
+robolens run --task kitchenbench/pour_pasta --policy molmoact2 --embodiment yam_arms
+```
+
 ## Add your benchmark
 
 A benchmark is any repo that:
