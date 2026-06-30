@@ -2,19 +2,19 @@
 
 WorldEvals is the **"Inspect Evals for robotics"**: a curated **catalog + CLI**
 indexing physical-AI benchmarks built on
-[RoboLens](https://github.com/robocurve/robolens). Unlike Inspect Evals' monorepo,
+[RoboInspect](https://github.com/robocurve/roboinspect). Unlike Inspect Evals' monorepo,
 each benchmark here is **its own repo** (e.g.
 [KitchenBench](https://github.com/robocurve/kitchenbench)); WorldEvals is the
 lightweight index that ties them together.
 
 ## The one big idea
 
-- `robolens list` → what RoboLens tasks are **installed**.
+- `roboinspect list` → what RoboInspect tasks are **installed**.
 - `worldevals list` → what benchmarks **exist** and how to install them.
 
 WorldEvals does **not** depend on or import the benchmark repos (they're separate
 packages). It only keeps a static `catalog.py` of `Benchmark` entries; the
-`worldevals tasks` command bridges the two by annotating *installed* RoboLens
+`worldevals tasks` command bridges the two by annotating *installed* RoboInspect
 tasks with the catalogued benchmark they belong to.
 
 ## Layout
@@ -34,9 +34,9 @@ The package is small and self-documenting, so there's no separate `src/` guide.
 
 ## Working here (important gotchas)
 
-- **Dependency on RoboLens is a git tag** (`[tool.uv.sources] robolens = { git =
-  ..., tag = "v0.1.0" }`); it's used only by the `tasks` command (to read the
-  RoboLens registry). CI uses `uv` (plain pip ignores `tool.uv.sources`).
+- **Dependency on RoboInspect is a git tag** (`[tool.uv.sources] roboinspect = { git =
+  ..., tag = "v0.2.0" }`); it's used only by the `tasks` command (to read the
+  RoboInspect registry). CI uses `uv` (plain pip ignores `tool.uv.sources`).
 - **Conda is active in this shell** — `uv pip install -e .` lands in conda base,
   not `.venv`. Activate first: `source .venv/bin/activate && export
   VIRTUAL_ENV="$PWD/.venv"` (or use `uv run`).
@@ -48,7 +48,7 @@ The package is small and self-documenting, so there's no separate `src/` guide.
 ## Adding a benchmark to the catalog
 
 Append a `Benchmark(...)` entry to `src/worldevals/catalog.py` with its name,
-title, description, repo URL, install command, the RoboLens task keys it
+title, description, repo URL, install command, the RoboInspect task keys it
 registers, tags, and contributors. `tests/test_catalog_cli.py` validates every
 entry (unique name, well-formed `https://github.com/...` repo URL, ≥1 task key) —
 so a malformed entry fails CI. Keep `task_keys` in sync with the benchmark repo's

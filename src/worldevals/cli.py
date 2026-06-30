@@ -21,7 +21,7 @@ def build_parser() -> argparse.ArgumentParser:
     p_info = sub.add_parser("info", help="show details for one benchmark")
     p_info.add_argument("name")
 
-    sub.add_parser("tasks", help="RoboLens tasks installed locally, by benchmark")
+    sub.add_parser("tasks", help="RoboInspect tasks installed locally, by benchmark")
     return parser
 
 
@@ -54,11 +54,11 @@ def _cmd_info(name: str) -> int:
 
 
 def _cmd_tasks() -> int:
-    from robolens.registry import registered
+    from roboinspect.registry import registered
 
     tasks = sorted(registered("task"))
     if not tasks:
-        print("(no RoboLens tasks installed)")
+        print("(no RoboInspect tasks installed)")
         return 0
     for key in tasks:
         b = benchmark_for_task(key)

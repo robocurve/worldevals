@@ -42,7 +42,7 @@ def test_by_tag() -> None:
 
 def test_benchmark_for_task() -> None:
     assert benchmark_for_task("kitchenbench/pour_pasta").name == "kitchenbench"
-    assert benchmark_for_task("robolens/not-catalogued") is None
+    assert benchmark_for_task("roboinspect/not-catalogued") is None
 
 
 def test_public_api() -> None:
@@ -89,7 +89,7 @@ def test_cli_info_missing(capsys: pytest.CaptureFixture[str]) -> None:
 
 
 def test_cli_tasks(capsys: pytest.CaptureFixture[str]) -> None:
-    # robolens is installed (a dependency); at least its builtin task shows up,
+    # roboinspect is installed (a dependency); at least its builtin task shows up,
     # annotated with "—" since it isn't catalogued here.
     assert main(["tasks"]) == 0
     out = capsys.readouterr().out
@@ -99,9 +99,9 @@ def test_cli_tasks(capsys: pytest.CaptureFixture[str]) -> None:
 def test_cli_tasks_when_none_installed(
     monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str]
 ) -> None:
-    monkeypatch.setattr("robolens.registry.registered", lambda kind: {})
+    monkeypatch.setattr("roboinspect.registry.registered", lambda kind: {})
     assert main(["tasks"]) == 0
-    assert "no RoboLens tasks installed" in capsys.readouterr().out
+    assert "no RoboInspect tasks installed" in capsys.readouterr().out
 
 
 def test_cli_no_command_prints_help(capsys: pytest.CaptureFixture[str]) -> None:

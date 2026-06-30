@@ -28,7 +28,7 @@ jobs:
           cache-dependency-glob: "**/pyproject.toml"
       - name: Create venv
         run: uv venv --python 3.12
-      - name: Install (docs extras; robolens from git via tool.uv.sources)
+      - name: Install (docs extras; roboinspect from git via tool.uv.sources)
         run: uv pip install -e ".[docs]"
       - name: Build site (strict)
         run: uv run mkdocs build --strict

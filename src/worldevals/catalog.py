@@ -1,6 +1,6 @@
 """The WorldEvals catalog — the registry of physical-AI benchmark repos.
 
-Each benchmark is its own repository (built on RoboLens) that registers its tasks
+Each benchmark is its own repository (built on RoboInspect) that registers its tasks
 via entry points. WorldEvals indexes them so you can discover what exists and how
 to install it. To add a benchmark, append a
 [`Benchmark`][worldevals.catalog.Benchmark] entry here (PR).

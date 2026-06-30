@@ -4,8 +4,8 @@ build-backend = "hatchling.build"
 
 [project]
 name = "worldevals"
-version = "0.1.0"
-description = "The Inspect Evals for robotics — a curated catalog of physical-AI benchmarks built on RoboLens."
+version = "0.2.0"
+description = "The Inspect Evals for robotics — a curated catalog of physical-AI benchmarks built on RoboInspect."
 readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
@@ -20,7 +20,7 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
     "Typing :: Typed",
 ]
-dependencies = ["robolens>=0.1"]
+dependencies = ["roboinspect>=0.2"]
 
 [project.optional-dependencies]
 dev = [
@@ -43,10 +43,10 @@ worldevals = "worldevals.cli:main"
 
 [project.urls]
 Homepage = "https://github.com/robocurve/worldevals"
-Framework = "https://github.com/robocurve/robolens"
+Framework = "https://github.com/robocurve/roboinspect"
 
 [tool.uv.sources]
-robolens = { git = "https://github.com/robocurve/robolens", tag = "v0.1.0" }
+roboinspect = { git = "https://github.com/robocurve/roboinspect", tag = "v0.2.0" }
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/worldevals"]
