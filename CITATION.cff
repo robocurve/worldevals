@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "WorldEvals: A curated catalog of physical-AI benchmarks"
+authors:
+  - name: "Robocurve"
+type: software
+license: MIT
+repository-code: "https://github.com/robocurve/worldevals"
+version: "0.3.0"
