@@ -1,7 +1,7 @@
 site_name: WorldEvals
 site_description: >-
   The Inspect Evals for robotics — a curated catalog of physical-AI benchmarks
-  built on RoboInspect.
+  built on Inspect Robots.
 site_url: https://robocurve.github.io/worldevals/
 repo_url: https://github.com/robocurve/worldevals
 repo_name: robocurve/worldevals
@@ -77,7 +77,7 @@ plugins:
   - llmstxt:
       markdown_description: >-
         WorldEvals is the "Inspect Evals for robotics": a curated catalog of
-        physical-AI / VLA benchmarks built on RoboInspect. Each benchmark is its own
+        physical-AI / VLA benchmarks built on Inspect Robots. Each benchmark is its own
         repo; WorldEvals indexes what exists and how to install it.
       full_output: llms-full.txt
       sections:

@@ -59,7 +59,7 @@ The <strong>Inspect Evals</strong> for robotics.
 </p>
 
 A curated catalog of physical-AI / VLA benchmarks built on
-[RoboInspect](https://github.com/robocurve/roboinspect). Each benchmark lives in **its
+[Inspect Robots](https://github.com/robocurve/inspect-robots). Each benchmark lives in **its
 own repository** (so it owns its release cadence, dependencies, and hardware
 notes); WorldEvals is the index that ties them together.
 
@@ -67,7 +67,7 @@ notes); WorldEvals is the index that ties them together.
 [Add a benchmark](contributing.md){{ .md-button }}
 
 !!! tip "Two views of the collection"
-    `roboinspect list` tells you what RoboInspect tasks are **installed**.
+    `inspect-robots list` tells you what Inspect Robots tasks are **installed**.
     `worldevals list` tells you what benchmarks **exist** and how to get them.
 
 ## Benchmarks
@@ -87,7 +87,7 @@ pip install "worldevals @ git+https://github.com/robocurve/worldevals"
 worldevals list                 # all benchmarks
 worldevals list --tag bimanual  # filter by tag
 worldevals info kitchenbench    # repo, install command, task keys
-worldevals tasks                # RoboInspect tasks installed locally, by benchmark
+worldevals tasks                # Inspect Robots tasks installed locally, by benchmark
 ```
 
 For LLMs: [`llms.txt`](https://robocurve.github.io/worldevals/llms.txt) ·

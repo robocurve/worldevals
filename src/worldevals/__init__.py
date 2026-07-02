@@ -1,7 +1,7 @@
 """WorldEvals — the Inspect Evals for robotics.
 
 A curated catalog of physical-AI benchmarks built on
-`RoboInspect <https://github.com/robocurve/roboinspect>`_. Each benchmark is its own
+`Inspect Robots <https://github.com/robocurve/inspect-robots>`_. Each benchmark is its own
 repo (e.g. `KitchenBench <https://github.com/robocurve/kitchenbench>`_); this
 package indexes them and bridges "what exists" with "what's installed".
 """
@@ -17,7 +17,7 @@ from worldevals.catalog import (
     get,
 )
 
-__version__ = "0.1.0"
+__version__ = "0.3.0"
 
 __all__ = [
     "CATALOG",
