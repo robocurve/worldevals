@@ -3,11 +3,11 @@
 WorldEvals indexes benchmark repos; it doesn't host them. A benchmark is any
 repository that:
 
-1. **depends on [RoboInspect](https://github.com/robocurve/roboinspect)**,
-2. **defines one or more RoboInspect `Task`s**, and
-3. **registers them via entry points** — `[project.entry-points."roboinspect.tasks"]`
+1. **depends on [Inspect Robots](https://github.com/robocurve/inspect-robots)**,
+2. **defines one or more Inspect Robots `Task`s**, and
+3. **registers them via entry points** — `[project.entry-points."inspect_robots.tasks"]`
    (and, if it ships a simulator/embodiment or policy,
-   `roboinspect.embodiments` / `roboinspect.policies`).
+   `inspect_robots.embodiments` / `inspect_robots.policies`).
 
 See [KitchenBench](https://github.com/robocurve/kitchenbench) as the reference
 implementation.
@@ -25,7 +25,7 @@ Benchmark(
     description="10 bimanual kitchen-manipulation tasks: ...",
     repo="https://github.com/robocurve/kitchenbench",
     install="pip install 'kitchenbench @ git+https://github.com/robocurve/kitchenbench'",
-    task_keys=("kitchenbench/place_cutlery", ...),  # the RoboInspect task keys it registers
+    task_keys=("kitchenbench/place_cutlery", ...),  # the Inspect Robots task keys it registers
     tags=("kitchen", "bimanual", "manipulation"),
     bimanual=True,
     contributors=("your-handle",),
