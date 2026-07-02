@@ -90,8 +90,8 @@ worldevals info kitchenbench    # repo, install command, task keys
 worldevals tasks                # Inspect Robots tasks installed locally, by benchmark
 ```
 
-For LLMs: [`llms.txt`](https://robocurve.github.io/worldevals/llms.txt) ·
-[`llms-full.txt`](https://robocurve.github.io/worldevals/llms-full.txt).
+For LLMs: [`llms.txt`](https://worldevals.org/llms.txt) ·
+[`llms-full.txt`](https://worldevals.org/llms-full.txt).
 """
 
 

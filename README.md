@@ -12,7 +12,7 @@ A curated catalog of physical-AI / VLA benchmarks built on
 [![Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)](https://github.com/robocurve/worldevals/actions/workflows/ci.yml)
 [![Built on Inspect Robots](https://img.shields.io/badge/built%20on-Inspect%20Robots-indigo)](https://github.com/robocurve/inspect-robots)
 
-**[📖 Browse the catalog → robocurve.github.io/worldevals](https://robocurve.github.io/worldevals/)**
+**[📖 Browse the catalog → worldevals.org](https://worldevals.org/)**
 
 </div>
 
