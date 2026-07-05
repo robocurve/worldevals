@@ -1,5 +1,12 @@
 # WorldEvals — design
 
+> **Superseded naming (2026-07):** this doc predates the framework rename
+> `roboinspect` → `inspect-robots` (Inspect Robots). Read `roboinspect` /
+> RoboInspect below as `inspect-robots` / Inspect Robots; the CLI is
+> `inspect-robots`, and the entry-point group is
+> `[project.entry-points."inspect_robots.tasks"]` (likewise
+> `inspect_robots.embodiments` / `inspect_robots.policies`).
+
 > **WorldEvals** is the "Inspect Evals for robotics": a curated **collection /
 > index** of physical-AI benchmarks built on
 > [RoboInspect](https://github.com/robocurve/roboinspect). Because each benchmark is
