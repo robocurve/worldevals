@@ -17,6 +17,9 @@ classifiers = [
     "Intended Audience :: Science/Research",
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
     "Typing :: Typed",
 ]
@@ -45,6 +48,7 @@ worldevals = "worldevals.cli:main"
 
 [project.urls]
 Homepage = "https://github.com/robocurve/worldevals"
+Documentation = "https://worldevals.org/"
 Framework = "https://github.com/robocurve/inspect-robots"
 
 [tool.uv.sources]
@@ -67,7 +71,7 @@ known-first-party = ["worldevals"]
 [tool.mypy]
 python_version = "3.10"
 strict = true
-files = ["src/worldevals"]
+files = ["src/worldevals", "scripts"]
 
 [tool.pytest.ini_options]
 minversion = "8.0"
