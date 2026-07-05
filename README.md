@@ -35,6 +35,8 @@ provides, and how to install them.
 ## Install & use
 
 ```bash
+# Inspect Robots isn't on PyPI yet, so install it from its git tag first:
+pip install "inspect-robots @ git+https://github.com/robocurve/inspect-robots@v0.3.0"
 pip install "worldevals @ git+https://github.com/robocurve/worldevals"
 
 worldevals list                 # all benchmarks
@@ -46,6 +48,7 @@ worldevals tasks                # Inspect Robots tasks installed locally, by ben
 Then install a benchmark and run it through Inspect Robots:
 
 ```bash
+pip install "inspect-robots @ git+https://github.com/robocurve/inspect-robots@v0.3.0"
 pip install "kitchenbench @ git+https://github.com/robocurve/kitchenbench"
 inspect-robots run --task kitchenbench/pour_pasta --policy kitchen_scripted --embodiment kitchen
 ```
@@ -59,6 +62,7 @@ These are their own repos too (not catalog entries):
 | Adapter | Policy · Embodiment | Stack |
 |---|---|---|
 | [inspect-robots-yam](https://github.com/robocurve/inspect-robots-yam) | `molmoact2` · `yam_arms` | [MolmoAct2](https://github.com/allenai/molmoact2) on [I2RT YAM](https://i2rt.com/products/yam-6-dof-arm) bimanual arms |
+| [inspect-robots-so101](https://github.com/robocurve/inspect-robots-so101) | `lerobot` · `so_arm` | [LeRobot](https://github.com/huggingface/lerobot) policies (ACT, SmolVLA, π0, …) on [SO-ARM](https://github.com/TheRobotStudio/SO-ARM100) (SO-100 / SO-101) follower arms |
 
 ```bash
 inspect-robots run --task kitchenbench/pour_pasta --policy molmoact2 --embodiment yam_arms
@@ -82,7 +86,7 @@ implementation.
 ## Development
 
 ```bash
-uv venv && uv pip install -e ".[dev]"     # inspect_robots resolved from the v0.2.0 tag
+uv venv && uv pip install -e ".[dev]"     # inspect_robots resolved from the v0.3.0 tag
 uv run pre-commit install
 uv run pytest --cov                        # 100% coverage required
 uv run ruff check . && uv run mypy
