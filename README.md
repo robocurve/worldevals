@@ -92,6 +92,21 @@ uv run pytest --cov                        # 100% coverage required
 uv run ruff check . && uv run mypy
 ```
 
+## Citation
+
+If you use WorldEvals in your research, please cite it:
+
+```bibtex
+@software{worldevals,
+  author  = {Robocurve},
+  title   = {WorldEvals: A curated catalog of physical-AI benchmarks},
+  year    = {2026},
+  url     = {https://github.com/robocurve/worldevals},
+  version = {0.3.0},
+  license = {MIT}
+}
+```
+
 ## License
 
 [MIT](LICENSE)
