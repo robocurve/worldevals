@@ -35,8 +35,13 @@ The package is small and self-documenting, so there's no separate `src/` guide.
 ## Working here (important gotchas)
 
 - **Dependency on Inspect Robots is a git tag** (`[tool.uv.sources] inspect-robots = { git =
-  ..., tag = "v0.2.0" }`); it's used only by the `tasks` command (to read the
-  Inspect Robots registry). CI uses `uv` (plain pip ignores `tool.uv.sources`).
+  ..., tag = "v0.3.0" }`); it's used only by the `tasks` command (to read the
+  Inspect Robots registry). `tool.uv.sources` is **uv-only**: plain pip ignores it,
+  and `inspect-robots` isn't on PyPI, so every pip-facing install instruction is
+  **two-step** — `pip install "inspect-robots @
+  git+https://github.com/robocurve/inspect-robots@v0.3.0"` first, then the
+  package. Keep README, `catalog.py` install strings, `scripts/gen_catalog.py`,
+  and `docs/contributing.md` in that form.
 - **Conda is active in this shell** — `uv pip install -e .` lands in conda base,
   not `.venv`. Activate first: `source .venv/bin/activate && export
   VIRTUAL_ENV="$PWD/.venv"` (or use `uv run`).

@@ -82,6 +82,8 @@ notes); WorldEvals is the index that ties them together.
 ## Browse from the command line
 
 ```bash
+# Inspect Robots isn't on PyPI yet, so install it from its git tag first:
+pip install "inspect-robots @ git+https://github.com/robocurve/inspect-robots@v0.3.0"
 pip install "worldevals @ git+https://github.com/robocurve/worldevals"
 
 worldevals list                 # all benchmarks
@@ -90,8 +92,8 @@ worldevals info kitchenbench    # repo, install command, task keys
 worldevals tasks                # Inspect Robots tasks installed locally, by benchmark
 ```
 
-For LLMs: [`llms.txt`](https://robocurve.github.io/worldevals/llms.txt) ·
-[`llms-full.txt`](https://robocurve.github.io/worldevals/llms-full.txt).
+For LLMs: [`llms.txt`](https://worldevals.org/llms.txt) ·
+[`llms-full.txt`](https://worldevals.org/llms-full.txt).
 """
 
 
