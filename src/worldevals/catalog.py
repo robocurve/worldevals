@@ -9,6 +9,7 @@ to install it. To add a benchmark, append a
 from __future__ import annotations
 
 from dataclasses import dataclass
+from typing import Literal
 
 
 @dataclass(frozen=True)
@@ -24,7 +25,7 @@ class Benchmark:
     tags: tuple[str, ...]
     bimanual: bool
     contributors: tuple[str, ...]
-    status: str = "alpha"
+    status: Literal["alpha", "beta", "stable"] = "alpha"
 
 
 _KITCHENBENCH_TASKS = (

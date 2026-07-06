@@ -17,6 +17,9 @@ classifiers = [
     "Intended Audience :: Science/Research",
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
     "Typing :: Typed",
 ]
@@ -33,7 +36,9 @@ dev = [
 docs = [
     "mkdocs>=1.6",
     "mkdocs-material>=9.5",
-    "mkdocs-gen-files>=0.5",
+    # <0.6.1: 0.6.1 pulls in "properdocs", an mkdocs fork that injects promo
+    # content into every build. Cap (not !=) so a future 0.6.2 can't re-add it.
+    "mkdocs-gen-files>=0.5,<0.6.1",
     "mkdocstrings[python]>=0.26",
     "mkdocs-llmstxt>=0.2",
 ]
@@ -43,6 +48,7 @@ worldevals = "worldevals.cli:main"
 
 [project.urls]
 Homepage = "https://github.com/robocurve/worldevals"
+Documentation = "https://worldevals.org/"
 Framework = "https://github.com/robocurve/inspect-robots"
 
 [tool.uv.sources]
@@ -65,7 +71,7 @@ known-first-party = ["worldevals"]
 [tool.mypy]
 python_version = "3.10"
 strict = true
-files = ["src/worldevals"]
+files = ["src/worldevals", "scripts"]
 
 [tool.pytest.ini_options]
 minversion = "8.0"
