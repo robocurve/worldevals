@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "worldevals"
 dynamic = ["version"]
-description = "The Inspect Evals for robotics — a curated catalog of physical-AI benchmarks built on Inspect Robots."
+description = "A curated catalog of physical-AI benchmarks built on Inspect Robots — the Inspect Evals for robotics."
 readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
