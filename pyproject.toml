@@ -51,9 +51,6 @@ Homepage = "https://github.com/robocurve/worldevals"
 Documentation = "https://worldevals.org/"
 Framework = "https://github.com/robocurve/inspect-robots"
 
-[tool.uv.sources]
-inspect-robots = { git = "https://github.com/robocurve/inspect-robots", tag = "v0.3.0" }
-
 [tool.hatch.build.targets.wheel]
 packages = ["src/worldevals"]
 
