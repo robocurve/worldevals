@@ -1,20 +1,79 @@
 name: Release
 
-# Publishes to PyPI via trusted publishing (OIDC) — no API tokens.
-# Authenticates against the PyPI trusted-publisher entry for this repo
-# (workflow: release.yml, environment: pypi).
+# Two ways to release; both publish to PyPI via trusted publishing (OIDC):
+#
+#   1. One-click: Actions -> Release -> "Run workflow" -> pick a version bump.
+#      The cut job bumps pyproject.toml on main, tags, and creates the GitHub
+#      release; publish then runs in this same workflow run. (A release created
+#      with the built-in GITHUB_TOKEN never re-triggers workflows, which is why
+#      publish must live in this run rather than firing on the release event.)
+#
+#   2. Manual: publish a GitHub release by hand — the publish job runs on the
+#      release event. The tag must point at a commit that contains this file.
 on:
   release:
     types: [published]
+  workflow_dispatch:
+    inputs:
+      bump:
+        description: "Version bump"
+        type: choice
+        options: [patch, minor, major]
+        default: patch
+
+concurrency:
+  group: release
+  cancel-in-progress: false
 
 jobs:
+  cut:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # push the version bump; create the tag + release
+    outputs:
+      tag: ${{ steps.bump.outputs.tag }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Bump version in pyproject.toml
+        id: bump
+        env:
+          BUMP: ${{ inputs.bump }}
+        run: |
+          current=$(grep -m1 '^version = ' pyproject.toml | cut -d'"' -f2)
+          IFS=. read -r major minor patch <<< "$current"
+          case "$BUMP" in
+            major) major=$((major+1)); minor=0; patch=0 ;;
+            minor) minor=$((minor+1)); patch=0 ;;
+            patch) patch=$((patch+1)) ;;
+          esac
+          new="$major.$minor.$patch"
+          sed -i "s/^version = \"$current\"/version = \"$new\"/" pyproject.toml
+          echo "version: $current -> $new"
+          echo "tag=v$new" >> "$GITHUB_OUTPUT"
+      - name: Commit, tag, and create GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.bump.outputs.tag }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -am "release: $TAG"
+          git push
+          gh release create "$TAG" --target "$(git rev-parse HEAD)" --title "$TAG" --generate-notes
+
   publish:
+    # Directly on manual release events; after cut on workflow_dispatch.
+    needs: [cut]
+    if: ${{ !cancelled() && (github.event_name == 'release' || needs.cut.result == 'success') }}
     runs-on: ubuntu-latest
     environment: pypi
     permissions:
       id-token: write  # OIDC token for PyPI trusted publishing
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.cut.outputs.tag || github.ref }}
       - name: Install uv
         uses: astral-sh/setup-uv@v5
       - name: Build sdist + wheel
