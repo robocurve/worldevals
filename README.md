@@ -2,10 +2,11 @@
 
 # 🌍 WorldEvals
 
-**The [Inspect Evals](https://inspect.aisi.org.uk/evals/) for robotics.**
-
-A curated catalog of physical-AI / VLA benchmarks built on
+**A curated catalog of physical-AI / VLA benchmarks** — each one installable,
+versioned, and runnable on real robots or simulators via
 [Inspect Robots](https://github.com/robocurve/inspect-robots).
+
+If you know [Inspect Evals](https://inspect.aisi.org.uk/evals/), this is that for robotics.
 
 [![CI](https://github.com/robocurve/worldevals/actions/workflows/ci.yml/badge.svg)](https://github.com/robocurve/worldevals/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
@@ -16,12 +17,12 @@ A curated catalog of physical-AI / VLA benchmarks built on
 
 </div>
 
-[Inspect Robots](https://github.com/robocurve/inspect-robots) is the *framework* (the "Inspect
-AI for robotics"). **WorldEvals is the collection** — but unlike Inspect Evals'
-monorepo, each benchmark here lives in **its own repository** so it owns its
-release cadence, dependencies, hardware notes, and leaderboard. WorldEvals is the
-lightweight index that ties them together: what benchmarks exist, what tasks each
-provides, and how to install them.
+[Inspect Robots](https://github.com/robocurve/inspect-robots) is the *framework*;
+**WorldEvals is the collection**. Each benchmark lives in **its own repository**,
+owning its release cadence, dependencies, hardware notes, and leaderboard —
+WorldEvals is the lightweight index that ties them together: what benchmarks
+exist, what tasks each provides, and how to install them. If you come from
+Inspect AI, this is the Inspect Evals of that ecosystem, minus the monorepo.
 
 - `inspect-robots list` tells you what's **installed**.
 - `worldevals list` tells you what **exists** and how to get it.
@@ -35,9 +36,7 @@ provides, and how to install them.
 ## Install & use
 
 ```bash
-# Inspect Robots isn't on PyPI yet, so install it from its git tag first:
-pip install "inspect-robots @ git+https://github.com/robocurve/inspect-robots@v0.3.0"
-pip install "worldevals @ git+https://github.com/robocurve/worldevals"
+pip install worldevals   # pulls in inspect-robots
 
 worldevals list                 # all benchmarks
 worldevals list --tag bimanual  # filter by tag
@@ -48,8 +47,7 @@ worldevals tasks                # Inspect Robots tasks installed locally, by ben
 Then install a benchmark and run it through Inspect Robots:
 
 ```bash
-pip install "inspect-robots @ git+https://github.com/robocurve/inspect-robots@v0.3.0"
-pip install "kitchenbench @ git+https://github.com/robocurve/kitchenbench"
+pip install kitchenbench
 inspect-robots run --task kitchenbench/pour_pasta --policy kitchen_scripted --embodiment kitchen
 ```
 
