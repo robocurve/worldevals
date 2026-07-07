@@ -74,6 +74,10 @@ actual registered task names.
 - **CI installs from `uv.lock`** (`uv sync --locked`). After changing
   dependencies in `pyproject.toml`, run `uv lock` and commit the lockfile —
   otherwise CI fails with "the lockfile needs to be updated".
+- A weekly **canary** (`canary.yml`) does the opposite: it installs the latest
+  dependency versions the pyproject ranges allow (ignoring the lockfile), runs
+  the tests, and opens an issue on failure — catching ecosystem breakage that
+  locked CI can't see. A green canary means `uv lock --upgrade` is safe.
 - **Releases are one-click**: Actions → Release → Run workflow → pick
   patch/minor/major. The version is derived from the git tag by hatch-vcs —
   never add a static `version =` back to pyproject (`__version__` comes from importlib.metadata). The same
