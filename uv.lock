@@ -411,12 +411,16 @@ wheels = [
 
 [[package]]
 name = "inspect-robots"
-version = "0.3.0"
-source = { git = "https://github.com/robocurve/inspect-robots?tag=v0.3.0#b7d9e692c3870adfd0788ff0c638f2563c9dd25e" }
+version = "0.3.1"
+source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
     { name = "numpy", version = "2.4.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.11.*'" },
     { name = "numpy", version = "2.5.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/69/0a/51842c179ec4b773a82f1d5821705cdd5c0313d476d93ceff5129fc57ea9/inspect_robots-0.3.1.tar.gz", hash = "sha256:0621d4ce6f896a04f69afc2ea29b0c6b9384cc40ebdd020c43c83374c2cd323f", size = 73890, upload-time = "2026-07-07T04:28:00.453Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/24/59/62fe490b46662618d9bfb9e49d17e2cbf37f5d5c5b378004fd29aa8711a5/inspect_robots-0.3.1-py3-none-any.whl", hash = "sha256:46c4316e1c9ae053c35938e4ada457e9c897a9bb311d18368feb01e818ef93e0", size = 56051, upload-time = "2026-07-07T04:27:58.942Z" },
 ]
 
 [[package]]
@@ -1512,7 +1516,6 @@ wheels = [
 
 [[package]]
 name = "worldevals"
-version = "0.3.0"
 source = { editable = "." }
 dependencies = [
     { name = "inspect-robots" },
@@ -1536,7 +1539,7 @@ docs = [
 
 [package.metadata]
 requires-dist = [
-    { name = "inspect-robots", git = "https://github.com/robocurve/inspect-robots?tag=v0.3.0" },
+    { name = "inspect-robots", specifier = ">=0.3" },
     { name = "mkdocs", marker = "extra == 'docs'", specifier = ">=1.6" },
     { name = "mkdocs-gen-files", marker = "extra == 'docs'", specifier = ">=0.5,<0.6.1" },
     { name = "mkdocs-llmstxt", marker = "extra == 'docs'", specifier = ">=0.2" },

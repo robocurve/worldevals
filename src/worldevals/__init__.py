@@ -17,7 +17,13 @@ from worldevals.catalog import (
     get,
 )
 
-__version__ = "0.3.0"
+try:
+    from importlib.metadata import PackageNotFoundError
+    from importlib.metadata import version as _pkg_version
+
+    __version__ = _pkg_version("worldevals")
+except PackageNotFoundError:  # pragma: no cover - only hit in a non-installed tree
+    __version__ = "0.0.0+unknown"
 
 __all__ = [
     "CATALOG",
