@@ -51,10 +51,7 @@ CATALOG: tuple[Benchmark, ...] = (
             "two-arm handover, and a multi-instance cutlery sort."
         ),
         repo="https://github.com/robocurve/kitchenbench",
-        install=(
-            'pip install "inspect-robots @ git+https://github.com/robocurve/inspect-robots@v0.3.0"'
-            ' && pip install "kitchenbench @ git+https://github.com/robocurve/kitchenbench"'
-        ),
+        install="pip install kitchenbench",  # pulls in inspect-robots from PyPI
         task_keys=_KITCHENBENCH_TASKS,
         tags=("kitchen", "bimanual", "manipulation"),
         bimanual=True,

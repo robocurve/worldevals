@@ -24,10 +24,7 @@ Benchmark(
     title="KitchenBench",
     description="10 bimanual kitchen-manipulation tasks: ...",
     repo="https://github.com/robocurve/kitchenbench",
-    install=(
-        'pip install "inspect-robots @ git+https://github.com/robocurve/inspect-robots@v0.3.0"'
-        ' && pip install "kitchenbench @ git+https://github.com/robocurve/kitchenbench"'
-    ),
+    install="pip install kitchenbench",  # from PyPI; git URL only if unpublished
     task_keys=("kitchenbench/place_cutlery", ...),  # the Inspect Robots task keys it registers
     tags=("kitchen", "bimanual", "manipulation"),
     bimanual=True,

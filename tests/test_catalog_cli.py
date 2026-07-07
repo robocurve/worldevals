@@ -12,14 +12,13 @@ from worldevals.cli import main
 
 _REPO_RE = re.compile(r"^https://github\.com/[\w.-]+/[\w.-]+$")
 
-# The documented two-step install: step 1 installs inspect-robots from its
-# pinned git tag (it isn't on PyPI, and [tool.uv.sources] is uv-only), step 2
-# installs the benchmark from its own repo. This regex is the drift guard for
-# the tag carried by the install strings and docs.
+# The documented install is a single step: from PyPI for published benchmarks
+# (the benchmark's own dependencies pull in inspect-robots), or a quoted git
+# URL for benchmarks not yet published. This regex is the drift guard for the
+# install strings carried by the catalog and docs.
 _INSTALL_RE = re.compile(
-    r'^pip install "inspect-robots @ '
-    r'git\+https://github\.com/robocurve/inspect-robots@v0\.3\.0"'
-    r' && pip install "[\w.-]+ @ git\+(https://github\.com/[\w.-]+/[\w.-]+)"$'
+    r"^pip install "
+    r'(?:(?P<pypi>[\w.-]+)|"[\w.-]+ @ git\+(?P<repo>https://github\.com/[\w.-]+/[\w.-]+)")$'
 )
 
 
@@ -36,8 +35,11 @@ def test_catalog_integrity() -> None:
         assert _REPO_RE.match(b.repo), b.repo
         assert b.status in {"alpha", "beta", "stable"}
         install = _INSTALL_RE.match(b.install)
-        assert install, b.install  # documented two-step form, step 1 pinned to the tag
-        assert install.group(1) == b.repo  # step 2 installs from this benchmark's repo
+        assert install, b.install  # PyPI name, or quoted git URL if unpublished
+        if install.group("pypi"):
+            assert install.group("pypi") == b.name  # published under its own name
+        else:
+            assert install.group("repo") == b.repo  # unpublished: from its own repo
         assert len(b.task_keys) >= 1
         assert len(set(b.task_keys)) == len(b.task_keys)  # unique task keys
         assert all(key.startswith(f"{b.name}/") for key in b.task_keys)
