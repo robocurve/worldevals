@@ -1,10 +1,10 @@
 [build-system]
-requires = ["hatchling>=1.18"]
+requires = ["hatchling>=1.18", "hatch-vcs>=0.3"]
 build-backend = "hatchling.build"
 
 [project]
 name = "worldevals"
-version = "0.3.0"
+dynamic = ["version"]
 description = "The Inspect Evals for robotics — a curated catalog of physical-AI benchmarks built on Inspect Robots."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -56,6 +56,19 @@ inspect-robots = { git = "https://github.com/robocurve/inspect-robots", tag = "v
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/worldevals"]
+
+
+# ---------------------------------------------------------------------------
+# Versioning: single-source the version from git tags via hatch-vcs (the
+# release workflow cuts a vX.Y.Z tag; nothing is committed to main).
+# ---------------------------------------------------------------------------
+[tool.hatch.version]
+source = "vcs"
+
+[tool.hatch.version.raw-options]
+# Before/without tags (e.g. shallow CI checkouts), fall back instead of failing.
+version_scheme = "guess-next-dev"
+fallback_version = "0.0.0"
 
 [tool.ruff]
 line-length = 100
