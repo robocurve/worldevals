@@ -93,10 +93,10 @@ model-index:
 
 At most three sentences: base model + method (LoRA/full FT; what's frozen) + robot/embodiment
 + dataset. State whether adapters are merged and where raw adapters live if published.
-**Immediately after the H1**, add an eval-path blockquote linking
-[Inspect Robots](https://github.com/robocurve/inspect-robots), the embodiment's adapter repo
-(e.g. inspect-robots-so101 / inspect-robots-yam), and
-[WorldEvals](https://github.com/robocurve/worldevals) — see the template.
+**Immediately after the H1**, add an eval-path badge row (shields.io — blockquotes render
+as gray italics on the Hub) linking [Inspect Robots](https://github.com/robocurve/inspect-robots),
+the embodiment's adapter repo (e.g. inspect-robots-so101 / inspect-robots-yam), and
+[WorldEvals](https://worldevals.org) — copy the exact badges from the template.
 Link every **named artifact**: base model, each dataset, training-code repo, method libraries,
 papers. (Ordinary nouns like "camera" need no link.)
 
@@ -205,7 +205,7 @@ Frontmatter
 
 Body
 - [ ] Header ≤3 sentences; every named artifact linked; adapter/merge status stated
-- [ ] Eval-path blockquote right after the H1 (Inspect Robots + embodiment adapters + WorldEvals)
+- [ ] Eval-path badge row right after the H1 (Inspect Robots + embodiment adapters + WorldEvals)
 - [ ] Intended use + out-of-scope + validation status (with e-stop/supervision language)
 - [ ] Training table: data counts + filter/split rule (level, %, seed)
 - [ ] Training table: embodiment config + state/action key layout

@@ -32,10 +32,9 @@ inference: false
 
 # <Model name — robot + method in plain words>
 
-> **Evaluate this checkpoint** with [Inspect Robots](https://github.com/robocurve/inspect-robots) —
-> the Inspect-AI-style eval framework for physical AI — using the
-> [<embodiment> adapters](https://github.com/robocurve/inspect-robots-<embodiment>); benchmarks
-> are catalogued in [WorldEvals](https://github.com/robocurve/worldevals).
+[![Evaluate with Inspect Robots](https://img.shields.io/badge/evaluate%20with-Inspect%20Robots-indigo)](https://github.com/robocurve/inspect-robots)
+[![Adapters: <embodiment>](https://img.shields.io/badge/adapters-inspect--robots--<embodiment>-blue)](https://github.com/robocurve/inspect-robots-<embodiment>)
+[![Benchmarks: WorldEvals](https://img.shields.io/badge/benchmarks-WorldEvals-2ea44f)](https://worldevals.org)
 
 <≤3 sentences: [base model](link) + method (LoRA/full FT; what's frozen) + robot +
 [dataset](link). Adapter/merge status and where raw adapters live.>
