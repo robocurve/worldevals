@@ -17,6 +17,8 @@ If you know [Inspect Evals](https://inspect.aisi.org.uk/evals/), this is that fo
 
 </div>
 
+> **⚠️ Early alpha.** Under active development. APIs, data formats, and results may change without notice.
+
 [Inspect Robots](https://github.com/robocurve/inspect-robots) is the *framework*;
 **WorldEvals is the collection**. Each benchmark lives in **its own repository**,
 owning its release cadence, dependencies, hardware notes, and leaderboard —
