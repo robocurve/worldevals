@@ -88,6 +88,7 @@ plugins:
 nav:
   - Home: index.md
   - Add a benchmark: contributing.md
+  - Model cards: model-cards.md
   - API reference: api.md
 
 extra:
