@@ -8,6 +8,7 @@ versioned, and runnable on real robots or simulators via
 
 If you know [Inspect Evals](https://inspect.aisi.org.uk/evals/), this is that for robotics.
 
+![Status: alpha](https://img.shields.io/badge/status-alpha-blue)
 [![CI](https://github.com/robocurve/worldevals/actions/workflows/ci.yml/badge.svg)](https://github.com/robocurve/worldevals/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)](https://github.com/robocurve/worldevals/actions/workflows/ci.yml)
@@ -17,7 +18,8 @@ If you know [Inspect Evals](https://inspect.aisi.org.uk/evals/), this is that fo
 
 </div>
 
-> **⚠️ Early alpha.** Under active development. APIs, data formats, and results may change without notice.
+> [!NOTE]
+> This project is in early development. The API may change between releases, so pin a version before depending on it.
 
 [Inspect Robots](https://github.com/robocurve/inspect-robots) is the *framework*;
 **WorldEvals is the collection**. Each benchmark lives in **its own repository**,
