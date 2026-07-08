@@ -177,7 +177,15 @@ The section that makes a robot checkpoint usable at all:
 - Training instabilities/failed attempts, or a link to the repo's incident log — a reader
   choosing hyperparameters learns more from "lr 6e-4 NaN'd at step 2.5k" than from the winner.
 
-### 9. Versioning & contact (REQUIRED)
+### 9. Cataloguing (REQUIRED)
+
+At publish time, register the checkpoint in
+[WorldPolicies](https://github.com/robocurve/worldpolicies): add it to the
+[🤗 Collection](https://huggingface.co/collections/robocurve/worldpolicies-6a4dc8fd556a82aeea0fca37) and append a
+`Policy(...)` entry to its CI-validated `catalog.py` (see that repo's CLAUDE.md).
+Add the catalog badge to the card's badge row (see template).
+
+### 10. Versioning & contact (REQUIRED)
 
 - If this card supersedes a checkpoint, set `new_version:` frontmatter on the old repo.
 - State whether `main` is stable; recommend pinning by revision hash for reproduction.
@@ -225,5 +233,6 @@ Body
 - [ ] Caveats: per-source data licensing statement
 - [ ] Caveats: known data issues + eval-vs-deployment limits
 - [ ] Caveats: instabilities/failed attempts included or linked
+- [ ] Checkpoint registered in WorldPolicies (Collection + catalog.py entry + catalog badge)
 - [ ] Versioning + contact stated
 - [ ] Card written from named run artifacts at publish time

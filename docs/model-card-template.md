@@ -35,6 +35,7 @@ inference: false
 [![Evaluate with Inspect Robots](https://img.shields.io/badge/evaluate%20with-Inspect%20Robots-indigo)](https://github.com/robocurve/inspect-robots)
 [![Adapters: <embodiment>](https://img.shields.io/badge/adapters-inspect--robots--<embodiment>-blue)](https://github.com/robocurve/inspect-robots-<embodiment>)
 [![Benchmarks: WorldEvals](https://img.shields.io/badge/benchmarks-WorldEvals-2ea44f)](https://worldevals.org)
+[![Catalog: WorldPolicies](https://img.shields.io/badge/catalog-WorldPolicies-yellow)](https://huggingface.co/collections/robocurve/worldpolicies-6a4dc8fd556a82aeea0fca37)
 
 <≤3 sentences: [base model](link) + method (LoRA/full FT; what's frozen) + robot +
 [dataset](link). Adapter/merge status and where raw adapters live.>

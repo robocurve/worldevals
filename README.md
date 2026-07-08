@@ -93,6 +93,10 @@ checkpoint behind it is documented. Every model checkpoint published to the
 **[model-card standard](docs/model-cards.md)** (start from the
 [template](docs/model-card-template.md); the standard includes a gating checklist).
 
+Published checkpoints are catalogued in **[WorldPolicies](https://github.com/robocurve/worldpolicies)**
+(CI-validated registry + [🤗 Collection](https://huggingface.co/collections/robocurve/worldpolicies-6a4dc8fd556a82aeea0fca37)) —
+WorldEvals benchmarks them; WorldPolicies is where they live.
+
 ## Development
 
 > **Dependency changes:** after editing dependencies in `pyproject.toml`, run
