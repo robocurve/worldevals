@@ -14,7 +14,11 @@ Reference implementations (updated to comply with this standard):
 
 - **REQUIRED vs RECOMMENDED.** Every REQUIRED field must be present. If a REQUIRED value is
   genuinely unrecoverable (e.g. publishing a teammate's checkpoint from artifacts), write
-  `unknown (<why>)` — never silently omit the row. RECOMMENDED fields may be omitted.
+  `unknown (<why>)` — never silently omit the row. RECOMMENDED fields may be omitted (except
+  provenance rows — see §6). **Before writing `unknown`, check the checkpoint's own config
+  artifacts** (`experiment_cfg/`, `processor_config.json`, `statistics.json`,
+  `trainer_state.json`) — resolutions, action horizons, and normalization modes usually
+  live there.
 - Write the card **at publish time, from the run's artifacts** (`trainer_state.json`, wandb,
   eval results files, decision records) — not from memory.
 - Numbers over adjectives ("eval loss 1.129 → 0.0273", never "converged well"). Every number
@@ -30,7 +34,9 @@ code snippets. Prose without metadata is unfindable.
 
 ```yaml
 ---
-library_name: <e.g. lerobot, transformers; omit only if no library integration exists>
+library_name: <e.g. lerobot, transformers>
+# If no Hub library integration exists, OMIT the key but leave a trace comment:
+# library_name omitted: <framework> has no Hub library integration
 pipeline_tag: robotics
 license: <see procedure below>
 base_model: <hub id of the base checkpoint>       # powers the finetune/model tree
@@ -108,7 +114,7 @@ A table with one row each:
 
 | Row | Must include |
 |---|---|
-| Data | counts (source repos / episodes / frames or hours), filter rule, train/test split rule (level + % + seed if applicable) |
+| Data | counts (source repos / episodes / frames or hours), filter rule (write "no filtering (full dataset)" if none), train/test split rule (level + % + seed if applicable) |
 | Embodiment | embodiment tag/config name; state & action keys with index layout |
 | Image preprocessing | resolution, aspect-ratio handling (e.g. letterbox), augmentations |
 | Schedule | steps, batch (global × accum), LR + schedule, hardware (GPU type × count) |
@@ -131,10 +137,13 @@ A table with one row each:
 
 ### 6. Provenance (REQUIRED table; every row present, `unknown (<why>)` allowed)
 
+All 9 rows must be physically present. RECOMMENDED rows (Total compute, Cost) may contain
+`not estimated` instead of a value; REQUIRED rows may contain `unknown (<why>)`.
+
 | Row | Content |
 |---|---|
 | Trained by | person/org + dates |
-| Training code | URL. Private repos: mark `(private)` and summarize contents in one clause, or mirror the plan into the card |
+| Training code | URL. Private repos: mark `(private)` and summarize contents in one clause, or mirror the plan into the card. This rule applies to EVERY repo referenced anywhere in the card: link it or mark `(private)` |
 | Framework | training framework + **pinned commit**; versions of at minimum torch, transformers, and any adapter/PEFT library |
 | Compute provider | provider + GPU type × count; CPU/RAM when dataloading was the bottleneck or config differs from provider default |
 | Wall-clock | hours; preemption count and max steps lost (write "none" if none) |

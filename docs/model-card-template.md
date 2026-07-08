@@ -1,7 +1,8 @@
 # Model card template
 
 Copy everything below the line into the checkpoint repo's `README.md` and replace every
-`<placeholder>`. Keep the section order. Rules and the gating checklist:
+`<placeholder>`. **Remove the ```yaml fence lines** so the metadata block starts with `---`
+on line 1 (the Hub only parses unfenced frontmatter). Keep the section order. Rules and the gating checklist:
 [model-cards.md](model-cards.md).
 
 ---
