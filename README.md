@@ -85,6 +85,14 @@ validates every entry (unique name, well-formed repo URL, ≥1 task key). See
 [KitchenBench](https://github.com/robocurve/kitchenbench) as the reference
 implementation.
 
+## Publishing model checkpoints
+
+Benchmarks compare *policies* — and a benchmark number is only interpretable when the
+checkpoint behind it is documented. Every model checkpoint published to the
+[robocurve HuggingFace org](https://huggingface.co/robocurve) must follow the
+**[model-card standard](docs/model-cards.md)** (start from the
+[template](docs/model-card-template.md); the standard includes a gating checklist).
+
 ## Development
 
 > **Dependency changes:** after editing dependencies in `pyproject.toml`, run

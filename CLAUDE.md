@@ -50,6 +50,15 @@ The package is small and self-documenting, so there's no separate `src/` guide.
 - **Gates (all required, blocking PR checks):** `ruff check .`,
   `ruff format --check .`, `mypy` (strict), `pytest --cov` at **100% coverage**.
 
+## Publishing model checkpoints to HuggingFace (any agent session)
+
+Any checkpoint published to the robocurve HF org **must** follow
+[docs/model-cards.md](docs/model-cards.md): fill in
+[docs/model-card-template.md](docs/model-card-template.md) top-to-bottom, then pass the
+gating checklist (any unchecked REQUIRED box blocks publish). Common traps it prevents:
+license inheritance from the base model (never default apache-2.0), missing action/observation
+I/O contracts, and unverifiable eval claims. Reference implementations are linked in the doc.
+
 ## Adding a benchmark to the catalog
 
 Append a `Benchmark(...)` entry to `src/worldevals/catalog.py` with its name,
