@@ -1,8 +1,8 @@
 <div align="center">
 
-# 🌍 WorldEvals
+# WorldEvals
 
-**A curated catalog of physical-AI / VLA benchmarks** — each one installable,
+A curated catalog of physical-AI / VLA benchmarks: each one installable,
 versioned, and runnable on real robots or simulators via
 [Inspect Robots](https://github.com/robocurve/inspect-robots).
 
@@ -14,28 +14,28 @@ If you know [Inspect Evals](https://inspect.aisi.org.uk/evals/), this is that fo
 [![Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)](https://github.com/robocurve/worldevals/actions/workflows/ci.yml)
 [![Built on Inspect Robots](https://img.shields.io/badge/built%20on-Inspect%20Robots-indigo)](https://github.com/robocurve/inspect-robots)
 
-**[📖 Browse the catalog → worldevals.org](https://worldevals.org/)**
+**[Browse the catalog → worldevals.org](https://worldevals.org/)**
 
 </div>
 
 > [!NOTE]
 > This project is in early development. The API may change between releases, so pin a version before depending on it.
 
-[Inspect Robots](https://github.com/robocurve/inspect-robots) is the *framework*;
-**WorldEvals is the collection**. Each benchmark lives in **its own repository**,
-owning its release cadence, dependencies, hardware notes, and leaderboard —
+[Inspect Robots](https://github.com/robocurve/inspect-robots) is the framework;
+WorldEvals is the collection. Each benchmark lives in its own repository and
+owns its release cadence, dependencies, hardware notes, and leaderboard.
 WorldEvals is the lightweight index that ties them together: what benchmarks
 exist, what tasks each provides, and how to install them. If you come from
 Inspect AI, this is the Inspect Evals of that ecosystem, minus the monorepo.
 
-- `inspect-robots list` tells you what's **installed**.
-- `worldevals list` tells you what **exists** and how to get it.
+- `inspect-robots list` tells you what's installed.
+- `worldevals list` tells you what exists and how to get it.
 
 ## Benchmarks
 
 | Benchmark | Tasks | Tags | Status |
 |---|--:|---|---|
-| [KitchenBench](https://github.com/robocurve/kitchenbench) — 10 bimanual kitchen-manipulation tasks | 10 | kitchen, bimanual, manipulation | alpha |
+| [KitchenBench](https://github.com/robocurve/kitchenbench): 10 bimanual kitchen-manipulation tasks | 10 | kitchen, bimanual, manipulation | alpha |
 
 ## Install & use
 
@@ -57,7 +57,7 @@ inspect-robots run --task kitchenbench/pour_pasta --policy kitchen_scripted --em
 
 ## Backends (run on real robots)
 
-Benchmarks are embodiment-agnostic; **backend adapters** supply a concrete
+Benchmarks are embodiment-agnostic; backend adapters supply a concrete
 `Policy` + `Embodiment` so a benchmark runs on real hardware or a simulator.
 These are their own repos too (not catalog entries):
 
@@ -87,20 +87,19 @@ implementation.
 
 ## Publishing model checkpoints
 
-Benchmarks compare *policies* — and a benchmark number is only interpretable when the
+Benchmarks compare policies, and a benchmark number is only interpretable when the
 checkpoint behind it is documented. Every model checkpoint published to the
 [robocurve HuggingFace org](https://huggingface.co/robocurve) must follow the
-**[model-card standard](docs/model-cards.md)** (start from the
+[model-card standard](docs/model-cards.md) (start from the
 [template](docs/model-card-template.md); the standard includes a gating checklist).
 
-Published checkpoints are catalogued in **[WorldPolicies](https://github.com/robocurve/worldpolicies)**
-(CI-validated registry + [🤗 Collection](https://huggingface.co/collections/robocurve/worldpolicies-6a4dc8fd556a82aeea0fca37)) —
-WorldEvals benchmarks them; WorldPolicies is where they live.
+Published checkpoints are catalogued in [WorldPolicies](https://github.com/robocurve/worldpolicies)
+(CI-validated registry + [🤗 Collection](https://huggingface.co/collections/robocurve/worldpolicies-6a4dc8fd556a82aeea0fca37)).
 
 ## Development
 
 > **Dependency changes:** after editing dependencies in `pyproject.toml`, run
-> `uv lock` and commit the updated lockfile — CI installs with
+> `uv lock` and commit the updated lockfile: CI installs with
 > `uv sync --locked` and fails with "the lockfile needs to be updated" if you
 > forget. Day-to-day conventions (PR-only `main`, the required `ci-ok` check,
 > one-click releases) are documented in [`CLAUDE.md`](CLAUDE.md).
