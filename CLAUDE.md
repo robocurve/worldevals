@@ -91,3 +91,7 @@ actual registered task names.
   patch/minor/major. The version is derived from the git tag by hatch-vcs —
   never add a static `version =` back to pyproject (`__version__` comes from importlib.metadata). The same
   run publishes to PyPI via trusted publishing; nothing is pushed to main.
+- **PyPI readme is transformed at build time** — `hatch-fancy-pypi-readme`
+  rewrites GitHub-only alert syntax (`> [!NOTE]` etc.) in README.md into bold
+  blockquotes (`> **Note:**`) that PyPI renders; keep using alert syntax in the
+  README itself. Config lives at the bottom of pyproject.toml.
