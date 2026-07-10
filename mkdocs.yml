@@ -1,6 +1,6 @@
 site_name: WorldEvals
 site_description: >-
-  The Inspect Evals for robotics — a curated catalog of physical-AI benchmarks
+  The Inspect Evals for robotics: a curated catalog of physical-AI benchmarks
   built on Inspect Robots.
 site_url: https://worldevals.org/
 repo_url: https://github.com/robocurve/worldevals
