@@ -161,7 +161,7 @@ All 9 rows must be physically present. RECOMMENDED rows (Total compute, Cost) ma
 |---|---|
 | Trained by | person/org + dates |
 | Training code | URL. Private repos: mark `(private)` and summarize contents in one clause, or mirror the plan into the card. This rule applies to EVERY repo referenced anywhere in the card: link it or mark `(private)` |
-| Framework | training framework + **pinned commit**; versions of at minimum torch, transformers, and any adapter/PEFT library |
+| Framework | training framework + pinned commit; versions of at minimum torch, transformers, and any adapter/PEFT library |
 | Compute provider | provider + GPU type × count; CPU/RAM when dataloading was the bottleneck or config differs from provider default |
 | Wall-clock | hours; preemption count and max steps lost (write "none" if none) |
 | Total compute (RECOMMENDED) | FLOPs or GPU-hours + measurement method + stated uncertainty |

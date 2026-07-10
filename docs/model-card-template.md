@@ -1,7 +1,7 @@
 # Model card template
 
 Copy everything below the line into the checkpoint repo's `README.md` and replace every
-`<placeholder>`. **Remove the ```yaml fence lines** so the metadata block starts with `---`
+`<placeholder>`. Remove the ```yaml fence lines so the metadata block starts with `---`
 on line 1 (the Hub only parses unfenced frontmatter). Keep the section order. Follow the
 writing-style rules in model-cards.md: no em dashes in prose, no rhetorical bold, no
 decorative emoji. Rules and the gating checklist: [model-cards.md](model-cards.md).
