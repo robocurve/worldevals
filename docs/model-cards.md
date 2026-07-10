@@ -31,7 +31,7 @@ Cards are read as credibility signals: prose patterns that readers flag as AI-ge
 undermine the numbers next to them. Avoid the tells.
 
 - No em dashes in prose; use periods, colons, commas, or parentheses. `—` is allowed only
-  as an empty table cell.
+  as an empty table cell or inside a code block.
 - Bold only for definition-list lead-ins (`**term:**`) and at most one critical imperative
   per safety bullet; never mid-sentence for emphasis.
 - No decorative emoji (🤗 for Hugging Face is fine), no slogans or chiasmus, no
