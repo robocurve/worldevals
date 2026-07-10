@@ -1,9 +1,10 @@
 # Model card template
 
 Copy everything below the line into the checkpoint repo's `README.md` and replace every
-`<placeholder>`. **Remove the ```yaml fence lines** so the metadata block starts with `---`
-on line 1 (the Hub only parses unfenced frontmatter). Keep the section order. Rules and the gating checklist:
-[model-cards.md](model-cards.md).
+`<placeholder>`. Remove the ```yaml fence lines so the metadata block starts with `---`
+on line 1 (the Hub only parses unfenced frontmatter). Keep the section order. Follow the
+writing-style rules in model-cards.md: no em dashes in prose, no rhetorical bold, no
+decorative emoji. Rules and the gating checklist: [model-cards.md](model-cards.md).
 
 ---
 
@@ -30,7 +31,7 @@ inference: false
 ---
 ```
 
-# <Model name — robot + method in plain words>
+# <Model name: robot + method in plain words>
 
 [![Evaluate with Inspect Robots](https://img.shields.io/badge/evaluate%20with-Inspect%20Robots-indigo)](https://github.com/robocurve/inspect-robots)
 [![Adapters: <embodiment>](https://img.shields.io/badge/adapters-inspect--robots--<embodiment>-blue)](https://github.com/robocurve/inspect-robots-<embodiment>)
@@ -47,7 +48,7 @@ inference: false
   transfer); unattended operation; operation near people without hardware e-stop and
   enforced workspace/torque limits.
 - **Validation status:** <offline action-loss only | open-loop MSE | sim rollouts |
-  real-robot rollouts> — <link evidence>. Users are responsible for safe integration
+  real-robot rollouts> (<link evidence>). Users are responsible for safe integration
   (guardrails, e-stop, workspace limits) before any deployment.
 
 ## Training
