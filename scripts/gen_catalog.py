@@ -1,6 +1,6 @@
 """Generate the WorldEvals homepage from the catalog at build time.
 
-Run automatically by the ``mkdocs-gen-files`` plugin during ``mkdocs build`` — it
+Run automatically by the ``mkdocs-gen-files`` plugin during ``mkdocs build``: it
 imports :data:`worldevals.catalog.CATALOG` and renders it as a Material grid-card
 listing, so the site is always in sync with ``catalog.py`` (the single source of
 truth), mirroring how Inspect Evals generates its listing from per-eval metadata.
@@ -55,20 +55,20 @@ def render_home() -> str:
 # WorldEvals
 
 <p style="font-size: 1.25rem; font-weight: 500; margin-bottom: 0.25rem;">
-The <strong>Inspect Evals</strong> for robotics.
+The Inspect Evals for robotics.
 </p>
 
 A curated catalog of physical-AI / VLA benchmarks built on
-[Inspect Robots](https://github.com/robocurve/inspect-robots). Each benchmark lives in **its
-own repository** (so it owns its release cadence, dependencies, and hardware
+[Inspect Robots](https://github.com/robocurve/inspect-robots). Each benchmark lives in its
+own repository (so it owns its release cadence, dependencies, and hardware
 notes); WorldEvals is the index that ties them together.
 
 [:octicons-mark-github-16: GitHub](https://github.com/robocurve/worldevals){{ .md-button }}
 [Add a benchmark](contributing.md){{ .md-button }}
 
 !!! tip "Two views of the collection"
-    `inspect-robots list` tells you what Inspect Robots tasks are **installed**.
-    `worldevals list` tells you what benchmarks **exist** and how to get them.
+    `inspect-robots list` tells you what Inspect Robots tasks are installed.
+    `worldevals list` tells you what benchmarks exist and how to get them.
 
 ## Benchmarks
 

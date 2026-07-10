@@ -95,3 +95,22 @@ actual registered task names.
   rewrites GitHub-only alert syntax (`> [!NOTE]` etc.) in README.md into bold
   blockquotes (`> **Note:**`) that PyPI renders; keep using alert syntax in the
   README itself. Config lives at the bottom of pyproject.toml.
+
+## Writing style (public-facing text)
+
+READMEs, docs pages, repo/collection descriptions, and HF model cards must
+avoid AI-writing tells. This repo hosts the canonical rule: the full version
+with the gating checklist lives in
+[docs/model-cards.md, "Writing style"](docs/model-cards.md);
+short version:
+
+- No em dashes in prose. Use periods, colons, commas, or parentheses (`—` is
+  fine as an empty table cell and inside code blocks).
+- Bold only for definition-list lead-ins (`**term:**`) and at most one critical
+  imperative per safety bullet. Never mid-sentence for emphasis.
+- No decorative emoji (functional ✅/⚠️ marks and 🤗 for Hugging Face are fine),
+  no slogans or chiasmus, no "not just X, but Y".
+- Headers use colons, never em dashes or italics.
+
+Style-only edits must never touch YAML frontmatter, code blocks, numbers,
+links, or safety qualifiers.

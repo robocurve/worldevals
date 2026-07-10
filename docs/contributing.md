@@ -5,7 +5,7 @@ repository that:
 
 1. **depends on [Inspect Robots](https://github.com/robocurve/inspect-robots)**,
 2. **defines one or more Inspect Robots `Task`s**, and
-3. **registers them via entry points** — `[project.entry-points."inspect_robots.tasks"]`
+3. **registers them via entry points**: `[project.entry-points."inspect_robots.tasks"]`
    (and, if it ships a simulator/embodiment or policy,
    `inspect_robots.embodiments` / `inspect_robots.policies`).
 
@@ -33,10 +33,10 @@ Benchmark(
 )
 ```
 
-The homepage card grid is **generated from this catalog at build time**, so adding
+The homepage card grid is generated from this catalog at build time, so adding
 an entry updates the site automatically. A test validates every entry (unique
 name, well-formed `https://github.com/...` repo URL, ≥1 task key), and CI requires
-100% coverage — keep `task_keys` in sync with the benchmark's actual registered
+100% coverage. Keep `task_keys` in sync with the benchmark's actual registered
 task names.
 
 See the [API reference](api.md) for the `Benchmark` fields.
