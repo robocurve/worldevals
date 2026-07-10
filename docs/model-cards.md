@@ -1,6 +1,6 @@
 # Model cards for Robocurve HuggingFace uploads
 
-Every checkpoint published to the [robocurve](https://huggingface.co/robocurve) org **must**
+Every checkpoint published to the [robocurve](https://huggingface.co/robocurve) org must
 ship a model card following this guide. The primary audience is a publishing agent (Claude
 session) following it mechanically at publish time. Fill in
 [`model-card-template.md`](model-card-template.md) top-to-bottom, then verify with the
@@ -14,22 +14,35 @@ Reference implementations (updated to comply with this standard):
 
 - **REQUIRED vs RECOMMENDED.** Every REQUIRED field must be present. If a REQUIRED value is
   genuinely unrecoverable (e.g. publishing a teammate's checkpoint from artifacts), write
-  `unknown (<why>)` — never silently omit the row. RECOMMENDED fields may be omitted (except
-  provenance rows — see §6). **Before writing `unknown`, check the checkpoint's own config
-  artifacts** (`experiment_cfg/`, `processor_config.json`, `statistics.json`,
-  `trainer_state.json`) — resolutions, action horizons, and normalization modes usually
+  `unknown (<why>)`; never silently omit the row. RECOMMENDED fields may be omitted (except
+  provenance rows, see §6). Before writing `unknown`, check the checkpoint's own config
+  artifacts (`experiment_cfg/`, `processor_config.json`, `statistics.json`,
+  `trainer_state.json`): resolutions, action horizons, and normalization modes usually
   live there.
-- Write the card **at publish time, from the run's artifacts** (`trainer_state.json`, wandb,
-  eval results files, decision records) — not from memory.
+- Write the card at publish time, from the run's artifacts (`trainer_state.json`, wandb,
+  eval results files, decision records), not from memory.
 - Numbers over adjectives ("eval loss 1.129 → 0.0273", never "converged well"). Every number
   must be traceable to a named artifact.
 - USD for costs; SI units elsewhere; state units explicitly for actions/state.
+
+### Writing style
+
+Cards are read as credibility signals: prose patterns that readers flag as AI-generated
+undermine the numbers next to them. Avoid the tells.
+
+- No em dashes in prose; use periods, colons, commas, or parentheses. `—` is allowed only
+  as an empty table cell.
+- Bold only for definition-list lead-ins (`**term:**`) and at most one critical imperative
+  per safety bullet; never mid-sentence for emphasis.
+- No decorative emoji (🤗 for Hugging Face is fine), no slogans or chiasmus, no
+  "not just X, but Y" constructions.
+- Headers use colons, never em dashes or italics.
 
 ## Sections
 
 ### 1. YAML frontmatter (REQUIRED)
 
-The Hub parses these fields — they power search filters, the model tree, dataset links, and
+The Hub parses these fields: they power search filters, the model tree, dataset links, and
 code snippets. Prose without metadata is unfindable.
 
 ```yaml
@@ -65,7 +78,7 @@ license_link: https://huggingface.co/nvidia/GR00T-N1.7-3B/blob/main/LICENSE
 List data-source licenses in §8 (Caveats). If sources conflict, use the most restrictive and
 enumerate the conflicts there.
 
-**co2_eq_emissions (RECOMMENDED)** — Hub-parsed schema, grams CO2eq:
+**co2_eq_emissions (RECOMMENDED):** Hub-parsed schema, grams CO2eq:
 
 ```yaml
 co2_eq_emissions:
@@ -76,7 +89,7 @@ co2_eq_emissions:
   hardware_used: "1x H100 80GB"
 ```
 
-**model-index (RECOMMENDED)** — makes eval numbers machine-readable (renders the
+**model-index (RECOMMENDED):** makes eval numbers machine-readable (renders the
 "Evaluation results" widget; use `task.type: robotics`):
 
 ```yaml
@@ -93,11 +106,11 @@ model-index:
 
 At most three sentences: base model + method (LoRA/full FT; what's frozen) + robot/embodiment
 + dataset. State whether adapters are merged and where raw adapters live if published.
-**Immediately after the H1**, add an eval-path badge row (shields.io — blockquotes render
+Immediately after the H1, add an eval-path badge row (shields.io; blockquotes render
 as gray italics on the Hub) linking [Inspect Robots](https://github.com/robocurve/inspect-robots),
 the embodiment's adapter repo (e.g. inspect-robots-so101 / inspect-robots-yam), and
-[WorldEvals](https://worldevals.org) — copy the exact badges from the template.
-Link every **named artifact**: base model, each dataset, training-code repo, method libraries,
+[WorldEvals](https://worldevals.org). Copy the exact badges from the template.
+Link every named artifact: base model, each dataset, training-code repo, method libraries,
 papers. (Ordinary nouns like "camera" need no link.)
 
 ### 3. Intended use & safety (REQUIRED)
@@ -106,7 +119,7 @@ These checkpoints command physical actuators. Three bullets, none skippable:
 
 - **Intended use:** research/evaluation on `<exact embodiment>` for `<task families>`.
 - **Out of scope:** any other embodiment or rig without fine-tuning (VLA policies do not
-  zero-shot transfer across embodiments — say so); unattended operation; operation near
+  zero-shot transfer across embodiments; say so); unattended operation; operation near
   people without a hardware e-stop and enforced workspace/torque limits.
 - **Validation status:** exactly one of `offline action-loss only` / `open-loop MSE` /
   `sim rollouts` / `real-robot rollouts`, with a link to the evidence. Users are responsible
@@ -129,8 +142,8 @@ A table with one row each:
 
 - **Training loss:** name the actual objective (e.g. "flow-matching velocity MSE over a
   16-step action chunk"); state what is frozen/trainable.
-- **Eval regime:** declare exactly one primary regime — `offline action loss` /
-  `open-loop MSE` / `sim closed-loop` / `real closed-loop` — then its methodology:
+- **Eval regime:** declare exactly one primary regime (`offline action loss` /
+  `open-loop MSE` / `sim closed-loop` / `real closed-loop`), then its methodology:
   - offline/open-loop: split (level, %, seed), sample count, normalization parity with
     training, seeding/caching that makes values comparable across steps and runs;
   - rollouts (sim or real): task list, trials per task, success criterion, who/what judged,
@@ -164,8 +177,8 @@ The section that makes a robot checkpoint usable at all:
 - **Observation contract:** camera key names (and what each views), image resolution,
   state vector layout (key → index range).
 - **Action contract:** dimension layout (key → index range), absolute vs delta, units or
-  normalization convention, action-chunk horizon, control frequency if known, and **where
-  normalization statistics live** in the repo (e.g. `experiment_cfg/`, `statistics.json`).
+  normalization convention, action-chunk horizon, control frequency if known, and where
+  normalization statistics live in the repo (e.g. `experiment_cfg/`, `statistics.json`).
 - Serving/deployment pointer (server script, client adapter).
 
 ### 8. Data provenance & caveats (REQUIRED)
@@ -174,7 +187,7 @@ The section that makes a robot checkpoint usable at all:
   per-source licenses apply and where to find them).
 - Known data issues: duplicates, imbalance, single-scene bias, teleoperator style.
 - Honest limits of the eval relative to deployment. "No real-robot rollouts yet" if true.
-- Training instabilities/failed attempts, or a link to the repo's incident log — a reader
+- Training instabilities/failed attempts, or a link to the repo's incident log: a reader
   choosing hyperparameters learns more from "lr 6e-4 NaN'd at step 2.5k" than from the winner.
 
 ### 9. Cataloguing (REQUIRED)
@@ -193,17 +206,17 @@ Add the catalog badge to the card's badge row (see template).
 
 ## Failure modes to avoid (observed in the wild)
 
-1. **Rich prose, empty metadata** — great documentation nobody can filter/find (no
+1. **Rich prose, empty metadata:** great documentation nobody can filter/find (no
    `pipeline_tag`, `datasets`, `base_model`). The model tree breaks for your downstream users.
-2. **Rich metadata, no eval/safety prose** — users cannot judge fitness for their rig.
-3. **Undocumented normalization/embodiment assumptions** — produces silently wrong actions
+2. **Rich metadata, no eval/safety prose:** users cannot judge fitness for their rig.
+3. **Undocumented normalization/embodiment assumptions:** produces silently wrong actions
    on real hardware. The I/O contract (§7) exists because of this.
-4. **License mismatch with the backbone** — stamping `apache-2.0` on a fine-tune of a
+4. **License mismatch with the backbone:** stamping `apache-2.0` on a fine-tune of a
    custom-licensed base (NVIDIA License, Gemma, …). Use the license procedure in §1.
-5. **Unfalsifiable eval claims** — success rates without trial counts/criteria, or numbers
+5. **Unfalsifiable eval claims:** success rates without trial counts/criteria, or numbers
    buried in images where no tooling can read them.
 
-## Checklist (REQUIRED gate — copy into the publish commit/PR; any unchecked box blocks publish)
+## Checklist (REQUIRED gate: copy into the publish commit/PR; any unchecked box blocks publish)
 
 Frontmatter
 - [ ] `license` set via the inheritance procedure (not defaulted)
@@ -236,3 +249,4 @@ Body
 - [ ] Checkpoint registered in WorldPolicies (Collection + catalog.py entry + catalog badge)
 - [ ] Versioning + contact stated
 - [ ] Card written from named run artifacts at publish time
+- [ ] Prose is free of AI-writing tells (no em dashes in prose, no rhetorical bold, no decorative emoji or slogans)
