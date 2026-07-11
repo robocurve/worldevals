@@ -36,12 +36,10 @@ The package is small and self-documenting, so there's no separate `src/` guide.
 
 - **Dependency on Inspect Robots is a git tag** (`[tool.uv.sources] inspect-robots = { git =
   ..., tag = "v0.3.0" }`); it's used only by the `tasks` command (to read the
-  Inspect Robots registry). `tool.uv.sources` is **uv-only**: plain pip ignores it,
-  and `inspect-robots` isn't on PyPI, so every pip-facing install instruction is
-  **two-step** — `pip install "inspect-robots @
-  git+https://github.com/robocurve/inspect-robots@v0.3.0"` first, then the
-  package. Keep README, `catalog.py` install strings, `scripts/gen_catalog.py`,
-  and `docs/contributing.md` in that form.
+  Inspect Robots registry). A PEP 508 direct reference is used in `pyproject.toml` so that
+  pip installations can be performed in a single step (e.g. `pip install "worldevals @
+  git+https://github.com/robocurve/worldevals"`). Keep README, `catalog.py` install strings,
+  `scripts/gen_catalog.py`, and `docs/contributing.md` in sync.
 - **Conda is active in this shell** — `uv pip install -e .` lands in conda base,
   not `.venv`. Activate first: `source .venv/bin/activate && export
   VIRTUAL_ENV="$PWD/.venv"` (or use `uv run`).

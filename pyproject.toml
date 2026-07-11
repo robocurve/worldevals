@@ -22,7 +22,12 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
     "Typing :: Typed",
 ]
-dependencies = ["inspect-robots>=0.3"]
+dependencies = [
+    # This direct Git dependency is temporary because inspect-robots is not yet published on PyPI.
+    # PyPI rejects packages that contain direct URL dependencies.
+    # Before publishing to PyPI this dependency must be reverted to the normal package name once inspect-robots is available on PyPI.
+    "inspect-robots @ git+https://github.com/robocurve/inspect-robots@v0.3.0",
+]
 
 [project.optional-dependencies]
 dev = [
@@ -52,6 +57,13 @@ Framework = "https://github.com/robocurve/inspect-robots"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/worldevals"]
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.uv.sources]
+inspect-robots = { git = "https://github.com/robocurve/inspect-robots", tag = "v0.3.0" }
+
 
 
 # ---------------------------------------------------------------------------
