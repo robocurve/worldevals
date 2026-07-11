@@ -11,8 +11,8 @@ If you know [Inspect Evals](https://inspect.aisi.org.uk/evals/), this is that fo
 ![Status: alpha](https://img.shields.io/badge/status-alpha-blue)
 [![CI](https://github.com/robocurve/worldevals/actions/workflows/ci.yml/badge.svg)](https://github.com/robocurve/worldevals/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
-[![Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)](https://github.com/robocurve/worldevals/actions/workflows/ci.yml)
 [![Docs coverage](https://img.shields.io/badge/public%20docstrings-100%25-brightgreen)](https://github.com/robocurve/worldevals/actions/workflows/ci.yml)
+[![Coverage](https://img.shields.io/badge/coverage-gated-brightgreen)](https://github.com/robocurve/worldevals/actions/workflows/ci.yml)
 [![Built on Inspect Robots](https://img.shields.io/badge/built%20on-Inspect%20Robots-indigo)](https://github.com/robocurve/inspect-robots)
 
 **[Browse the catalog → worldevals.org](https://worldevals.org/)**
