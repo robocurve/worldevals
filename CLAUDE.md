@@ -49,6 +49,8 @@ The package is small and self-documenting, so there's no separate `src/` guide.
   `uv run pytest --cov`.
 - **Gates (all required, blocking PR checks):** `ruff check .`,
   `ruff format --check .`, `mypy` (strict), `pytest --cov` at **100% coverage**.
+- Every public module, class, and function needs a docstring, enforced by `ruff` D1;
+  state the contract, don't restate the name.
 
 ## Publishing model checkpoints to HuggingFace (any agent session)
 
