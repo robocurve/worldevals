@@ -1,0 +1,78 @@
+name: Reconcile
+
+# Manually triggered pin reconciliation workflow. A maintainer runs this
+# workflow; it reads each catalogued benchmark's public release tags (via
+# `git ls-remote`) and opens a PR bumping any pin whose latest release tag
+# differs from what is committed.
+on:
+  workflow_dispatch:
+    inputs:
+      benchmark:
+        description: "Bump only this benchmark (leave blank to check all)."
+        required: false
+        type: string
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  reconcile:
+    name: reconcile catalog pins
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+          cache-dependency-glob: |
+            **/pyproject.toml
+            **/uv.lock
+
+      - name: Create venv
+        run: uv venv --python 3.11
+
+      - name: Install from uv.lock (dev extras)
+        run: uv sync --locked --extra dev
+
+      - name: Run reconcile
+        id: reconcile
+        env:
+          NAME: ${{ inputs.benchmark }}
+        run: |
+          if [ -n "$NAME" ]; then
+            uv run python scripts/reconcile.py --benchmark "$NAME"
+          else
+            uv run python scripts/reconcile.py
+          fi
+
+      - name: Open bump PR
+        if: steps.reconcile.outputs.bumped == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          NAME: ${{ steps.reconcile.outputs.name }}
+          TITLE: ${{ steps.reconcile.outputs.title }}
+          BODY: ${{ steps.reconcile.outputs.body }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          BRANCH="reconcile/$NAME"
+          git checkout -b "$BRANCH"
+          git add src/worldevals/register/
+          git commit -m "$TITLE"
+          git push -u origin "$BRANCH"
+          gh pr create --title "$TITLE" --body "$BODY" --base main --head "$BRANCH"
+
+      - name: Open failure issue
+        if: steps.reconcile.outputs.failed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          NAME: ${{ steps.reconcile.outputs.name }}
+          REASON: ${{ steps.reconcile.outputs.reason }}
+        run: |
+          gh issue create \
+            --title "reconcile: failed to extract $NAME" \
+            --body "Reconcile could not extract task keys for **$NAME**: $REASON"
