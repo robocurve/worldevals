@@ -1,15 +1,30 @@
-"""The WorldEvals catalog — the registry of physical-AI benchmark repos.
+"""The WorldEvals catalog, loaded from per-benchmark YAML in ``register/``.
 
-Each benchmark is its own repository (built on Inspect Robots) that registers its tasks
-via entry points. WorldEvals indexes them so you can discover what exists and how
-to install it. To add a benchmark, append a
-[`Benchmark`][worldevals.catalog.Benchmark] entry here (PR).
+Each benchmark is its own repository (built on Inspect Robots). Metadata lives
+in ``src/worldevals/register/<name>/benchmark.yaml`` (hand-authored) with
+generated task keys in a sibling ``task_keys.yaml``. ``CATALOG`` is assembled
+from those files at import and is the single in-process source of truth for the
+accessors below.
 """
 
 from __future__ import annotations
 
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Literal
+
+import yaml
+
+_REGISTER_DIR = Path(__file__).resolve().parent / "register"
+
+
+@dataclass(frozen=True)
+class Source:
+    """The pinned upstream source of a benchmark."""
+
+    repository_url: str
+    repository_commit: str
+    tag: str
 
 
 @dataclass(frozen=True)
@@ -19,46 +34,53 @@ class Benchmark:
     name: str
     title: str
     description: str
-    repo: str
-    install: str
+    source: Source
     task_keys: tuple[str, ...]
     tags: tuple[str, ...]
     bimanual: bool
     contributors: tuple[str, ...]
     status: Literal["alpha", "beta", "stable"] = "alpha"
 
+    @property
+    def repo(self) -> str:
+        """The benchmark's repository URL (from its pinned source)."""
+        return self.source.repository_url
 
-_KITCHENBENCH_TASKS = (
-    "kitchenbench/place_cutlery",
-    "kitchenbench/stack",
-    "kitchenbench/place_in_rack",
-    "kitchenbench/pour_pasta",
-    "kitchenbench/open_container",
-    "kitchenbench/fold_cloth",
-    "kitchenbench/seal_container",
-    "kitchenbench/handoff",
-    "kitchenbench/sort_cutlery",
-    "kitchenbench/scoop_pasta",
-)
+    @property
+    def install(self) -> str:
+        """Derived install command: PyPI name if published, else the pinned git URL."""
+        # Unpublished benchmarks install from their tagged git source; the two-step
+        # inspect-robots prerequisite is documented separately (see README).
+        return f'pip install "{self.name} @ git+{self.source.repository_url}@{self.source.tag}"'
 
-CATALOG: tuple[Benchmark, ...] = (
-    Benchmark(
-        name="kitchenbench",
-        title="KitchenBench",
-        description=(
-            "10 bimanual kitchen-manipulation tasks: pick-place, stacking, slotted "
-            "insertion, granular pour & tool-scoop, lid open/seal, cloth folding, a "
-            "two-arm handover, and a multi-instance cutlery sort."
+
+def _load_benchmark(directory: Path) -> Benchmark:
+    meta = yaml.safe_load((directory / "benchmark.yaml").read_text())
+    keys = yaml.safe_load((directory / "task_keys.yaml").read_text())
+    src = meta["source"]
+    return Benchmark(
+        name=meta["name"],
+        title=meta["title"],
+        description=meta["description"].strip(),
+        source=Source(
+            repository_url=src["repository_url"],
+            repository_commit=src["repository_commit"],
+            tag=src["tag"],
         ),
-        repo="https://github.com/robocurve/kitchenbench",
-        install="pip install kitchenbench",  # pulls in inspect-robots from PyPI
-        task_keys=_KITCHENBENCH_TASKS,
-        tags=("kitchen", "bimanual", "manipulation"),
-        bimanual=True,
-        contributors=("robocurve",),
-        status="alpha",
-    ),
-)
+        task_keys=tuple(keys["task_keys"]),
+        tags=tuple(meta["tags"]),
+        bimanual=bool(meta["bimanual"]),
+        contributors=tuple(meta["contributors"]),
+        status=meta.get("status", "alpha"),
+    )
+
+
+def _load_catalog() -> tuple[Benchmark, ...]:
+    dirs = sorted(p.parent for p in _REGISTER_DIR.glob("*/benchmark.yaml"))
+    return tuple(_load_benchmark(d) for d in dirs)
+
+
+CATALOG: tuple[Benchmark, ...] = _load_catalog()
 
 
 def catalog() -> tuple[Benchmark, ...]:
