@@ -43,6 +43,22 @@ _KITCHENBENCH_TASKS = (
 
 CATALOG: tuple[Benchmark, ...] = (
     Benchmark(
+        name="vibecheckbench",
+        title="VibeCheckBench",
+        description=(
+            "A one-task smoke benchmark: lay a detached clapstick on a clapperboard "
+            "centered 19 inches in front of the bimanual arm line. Exists to prove an "
+            "eval stack works end to end before a full benchmark run."
+        ),
+        repo="https://github.com/robocurve/vibecheckbench",
+        install='pip install "vibecheckbench @ git+https://github.com/robocurve/vibecheckbench"',
+        task_keys=("vibecheckbench/mark_slate",),
+        tags=("smoke-test", "bimanual", "manipulation"),
+        bimanual=True,
+        contributors=("robocurve",),
+        status="alpha",
+    ),
+    Benchmark(
         name="kitchenbench",
         title="KitchenBench",
         description=(
