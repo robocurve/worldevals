@@ -1,0 +1,11 @@
+task_keys:
+- kitchenbench/fold_cloth
+- kitchenbench/handoff
+- kitchenbench/open_container
+- kitchenbench/place_cutlery
+- kitchenbench/place_in_rack
+- kitchenbench/pour_pasta
+- kitchenbench/scoop_pasta
+- kitchenbench/seal_container
+- kitchenbench/sort_cutlery
+- kitchenbench/stack

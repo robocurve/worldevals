@@ -1,0 +1,14 @@
+name: kitchenbench
+title: KitchenBench
+description: >
+  10 bimanual kitchen-manipulation tasks: pick-place, stacking, slotted
+  insertion, granular pour and tool-scoop, lid open/seal, cloth folding, a
+  two-arm handover, and a multi-instance cutlery sort.
+tags: [kitchen, bimanual, manipulation]
+bimanual: true
+contributors: [robocurve]
+status: alpha
+source:
+  repository_url: https://github.com/robocurve/kitchenbench
+  repository_commit: "e781f9318648a2d65855a6b0fd138c056686d5b9"
+  tag: v0.5.0
