@@ -12,6 +12,7 @@ If you know [Inspect Evals](https://inspect.aisi.org.uk/evals/), this is that fo
 [![CI](https://github.com/robocurve/worldevals/actions/workflows/ci.yml/badge.svg)](https://github.com/robocurve/worldevals/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)](https://github.com/robocurve/worldevals/actions/workflows/ci.yml)
+[![Docs coverage](https://img.shields.io/badge/public%20docstrings-100%25-brightgreen)](https://github.com/robocurve/worldevals/actions/workflows/ci.yml)
 [![Built on Inspect Robots](https://img.shields.io/badge/built%20on-Inspect%20Robots-indigo)](https://github.com/robocurve/inspect-robots)
 
 **[Browse the catalog → worldevals.org](https://worldevals.org/)**
@@ -103,6 +104,9 @@ Published checkpoints are catalogued in [WorldPolicies](https://github.com/roboc
 > `uv sync --locked` and fails with "the lockfile needs to be updated" if you
 > forget. Day-to-day conventions (PR-only `main`, the required `ci-ok` check,
 > one-click releases) are documented in [`CLAUDE.md`](CLAUDE.md).
+
+Every public module, class, and function needs a docstring, enforced by `ruff` D1;
+state the contract, don't restate the name.
 
 ```bash
 uv venv && uv pip install -e ".[dev]"     # inspect_robots resolved from the v0.3.0 tag

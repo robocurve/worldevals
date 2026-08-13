@@ -39,4 +39,7 @@ name, well-formed `https://github.com/...` repo URL, ≥1 task key), and CI requ
 100% coverage. Keep `task_keys` in sync with the benchmark's actual registered
 task names.
 
+Every public module, class, and function needs a docstring, enforced by `ruff` D1;
+state the contract, don't restate the name.
+
 See the [API reference](api.md) for the `Benchmark` fields.

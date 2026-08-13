@@ -9,6 +9,7 @@ from worldevals.catalog import benchmark_for_task, by_tag, catalog, get
 
 
 def build_parser() -> argparse.ArgumentParser:
+    """Create the argument parser for the catalog browsing commands."""
     parser = argparse.ArgumentParser(
         prog="worldevals",
         description="WorldEvals — the Inspect Evals for robotics (a benchmark catalog).",
@@ -67,6 +68,7 @@ def _cmd_tasks() -> int:
 
 
 def main(argv: Sequence[str] | None = None) -> int:
+    """Run the catalog CLI and return its process exit status."""
     parser = build_parser()
     args = parser.parse_args(argv)
     if args.command == "list":
