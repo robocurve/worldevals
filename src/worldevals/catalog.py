@@ -78,8 +78,8 @@ CATALOG: tuple[Benchmark, ...] = (
         name="stationerybench",
         title="StationeryBench",
         description=(
-            "Five bimanual desk-stationery tasks with one fixed setup each and 20 "
-            "repetitions: uncap a marker, take an eraser out of a lidded box, pull the "
+            "5 bimanual desk-stationery tasks, one fixed setup each, 20 repetitions: "
+            "uncap a marker, open a box, take out an eraser, and close the lid, pull the "
             "middle pad from a sticky-note stack, pour paper clips into a lifted bowl, "
             "and hand a ruler between arms cup to cup. Binary operator grading with the "
             "0-4 stage rubric shown at the verdict prompt."
