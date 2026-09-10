@@ -37,6 +37,7 @@ Inspect AI, this is the Inspect Evals of that ecosystem, minus the monorepo.
 | Benchmark | Tasks | Tags | Status |
 |---|--:|---|---|
 | [KitchenBench](https://github.com/robocurve/kitchenbench): 10 bimanual kitchen-manipulation tasks | 10 | kitchen, bimanual, manipulation | alpha |
+| [Sacramento PaintBench](https://github.com/craigm26/OpenCastor/blob/main/docs/benchmarks/sacpaint.md): draw a photograph of Sacramento with a pen from camera feedback, scored from any photo of the sheet; media (pen, virtual) ranked as their own categories | 2 | drawing, single-arm, visual-feedback, manipulation | alpha |
 
 ## Install & use
 

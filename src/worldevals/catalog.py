@@ -74,6 +74,25 @@ CATALOG: tuple[Benchmark, ...] = (
         contributors=("robocurve",),
         status="alpha",
     ),
+    Benchmark(
+        name="sacpaint",
+        title="Sacramento PaintBench",
+        description=(
+            "Draw a fixed photograph of Sacramento (Tower Bridge over the Capitol dome) with a "
+            "pen from camera feedback; scored offline from any photo of the sheet against the "
+            "photo's traced landmarks: geometry, structure, discipline. Every score carries a "
+            "medium (pen on paper, or virtual: a real arm inking from its own telemetry), "
+            "and each medium is ranked as its own category."
+        ),
+        repo="https://github.com/craigm26/OpenCastor",
+        # A pointer package: it only depends on opencastor[paintbench] (castor bench sacpaint).
+        install="pip install sacpaint",
+        task_keys=("sacpaint/photo-v1", "sacpaint/line-v0"),
+        tags=("drawing", "single-arm", "visual-feedback", "manipulation"),
+        bimanual=False,
+        contributors=("craigm26",),
+        status="alpha",
+    ),
 )
 
 
