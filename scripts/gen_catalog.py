@@ -15,6 +15,7 @@ from worldevals.catalog import CATALOG, Benchmark
 # A Material icon per benchmark, chosen by its primary tag.
 _TAG_ICON = {
     "kitchen": ":material-silverware-fork-knife:",
+    "stationery": ":material-pencil-ruler:",
     "manipulation": ":material-robot-industrial:",
     "navigation": ":material-map-marker-path:",
     "locomotion": ":material-run:",

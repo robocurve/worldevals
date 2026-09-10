@@ -37,6 +37,7 @@ Inspect AI, this is the Inspect Evals of that ecosystem, minus the monorepo.
 | Benchmark | Tasks | Tags | Status |
 |---|--:|---|---|
 | [KitchenBench](https://github.com/robocurve/kitchenbench): 10 bimanual kitchen-manipulation tasks | 10 | kitchen, bimanual, manipulation | alpha |
+| [StationeryBench](https://github.com/robocurve/stationerybench): 5 bimanual desk-stationery tasks, one fixed setup each | 5 | stationery, bimanual, manipulation | alpha |
 
 ## Install & use
 
