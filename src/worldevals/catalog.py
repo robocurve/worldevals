@@ -74,6 +74,30 @@ CATALOG: tuple[Benchmark, ...] = (
         contributors=("robocurve",),
         status="alpha",
     ),
+    Benchmark(
+        name="stationerybench",
+        title="StationeryBench",
+        description=(
+            "Five bimanual desk-stationery tasks with one fixed setup each and 20 "
+            "repetitions: uncap a marker, take an eraser out of a lidded box, pull the "
+            "middle pad from a sticky-note stack, pour paper clips into a lifted bowl, "
+            "and hand a ruler between arms cup to cup. Binary operator grading with the "
+            "0-4 stage rubric shown at the verdict prompt."
+        ),
+        repo="https://github.com/robocurve/stationerybench",
+        install='pip install "stationerybench @ git+https://github.com/robocurve/stationerybench"',
+        task_keys=(
+            "stationerybench/uncap_marker",
+            "stationerybench/eraser_from_box",
+            "stationerybench/middle_sticky_pad",
+            "stationerybench/pour_paperclips",
+            "stationerybench/ruler_handover",
+        ),
+        tags=("stationery", "bimanual", "manipulation"),
+        bimanual=True,
+        contributors=("robocurve",),
+        status="alpha",
+    ),
 )
 
 
