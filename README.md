@@ -46,7 +46,7 @@ pip install worldevals   # pulls in inspect-robots
 
 worldevals list                 # all benchmarks
 worldevals list --tag bimanual  # filter by tag
-worldevals info kitchenbench    # repo, install command, task keys
+worldevals info kitchenbench    # repo, install command, task keys, what's installed
 worldevals tasks                # Inspect Robots tasks installed locally, by benchmark
 ```
 
