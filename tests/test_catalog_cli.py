@@ -95,13 +95,40 @@ def test_cli_list_empty_tag(capsys: pytest.CaptureFixture[str]) -> None:
     assert "no benchmarks tagged" in capsys.readouterr().out
 
 
-def test_cli_info(capsys: pytest.CaptureFixture[str]) -> None:
+def test_cli_info(monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str]) -> None:
+    # One of KitchenBench's tasks installed, plus an uncatalogued one that
+    # must not count toward KitchenBench's total.
+    monkeypatch.setattr(
+        "inspect_robots.registry.registered",
+        lambda kind: {"kitchenbench/pour_pasta": object(), "elsewhere/uncatalogued": object()},
+    )
     assert main(["info", "kitchenbench"]) == 0
     out = capsys.readouterr().out
-    assert "kitchenbench/pour_pasta" in out and "install:" in out
+    assert "install:" in out
+    assert "installed: 1/10 tasks" in out
+    assert "kitchenbench/pour_pasta  (installed)" in out
+    assert "kitchenbench/stack  (not installed)" in out
 
 
-def test_cli_info_missing(capsys: pytest.CaptureFixture[str]) -> None:
+def test_cli_info_all_installed(
+    monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str]
+) -> None:
+    keys = get("kitchenbench").task_keys
+    monkeypatch.setattr("inspect_robots.registry.registered", lambda kind: dict.fromkeys(keys))
+    assert main(["info", "kitchenbench"]) == 0
+    out = capsys.readouterr().out
+    assert "installed: 10/10 tasks" in out
+    assert "(not installed)" not in out
+
+
+def test_cli_info_missing(
+    monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str]
+) -> None:
+    # An unknown name must fail before the (slower) registry lookup.
+    def _fail(kind: str) -> dict[str, object]:
+        raise AssertionError("registry should not be read for an unknown benchmark")
+
+    monkeypatch.setattr("inspect_robots.registry.registered", _fail)
     assert main(["info", "nope"]) == 1
     assert "no benchmark named" in capsys.readouterr().out
 

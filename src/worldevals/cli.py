@@ -43,14 +43,19 @@ def _cmd_info(name: str) -> int:
     except KeyError as exc:
         print(str(exc))
         return 1
+    from inspect_robots.registry import registered
+
+    installed = registered("task")
+    n_installed = sum(key in installed for key in b.task_keys)
     print(f"{b.title} ({b.name})  [{b.status}]")
     print(f"  {b.description}")
     print(f"  repo:    {b.repo}")
     print(f"  install: {b.install}")
     print(f"  bimanual: {b.bimanual}   tags: {', '.join(b.tags)}")
+    print(f"  installed: {n_installed}/{len(b.task_keys)} tasks")
     print("  tasks:")
     for key in b.task_keys:
-        print(f"    - {key}")
+        print(f"    - {key}  ({'installed' if key in installed else 'not installed'})")
     return 0
 
 
