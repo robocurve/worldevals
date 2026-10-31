@@ -28,19 +28,6 @@ class Benchmark:
     status: Literal["alpha", "beta", "stable"] = "alpha"
 
 
-_KITCHENBENCH_TASKS = (
-    "kitchenbench/place_cutlery",
-    "kitchenbench/stack",
-    "kitchenbench/place_in_rack",
-    "kitchenbench/pour_pasta",
-    "kitchenbench/open_container",
-    "kitchenbench/fold_cloth",
-    "kitchenbench/seal_container",
-    "kitchenbench/handoff",
-    "kitchenbench/sort_cutlery",
-    "kitchenbench/scoop_pasta",
-)
-
 CATALOG: tuple[Benchmark, ...] = (
     Benchmark(
         name="vibecheckbench",
@@ -54,22 +41,6 @@ CATALOG: tuple[Benchmark, ...] = (
         install='pip install "vibecheckbench @ git+https://github.com/robocurve/vibecheckbench"',
         task_keys=("vibecheckbench/mark_slate",),
         tags=("smoke-test", "bimanual", "manipulation"),
-        bimanual=True,
-        contributors=("robocurve",),
-        status="alpha",
-    ),
-    Benchmark(
-        name="kitchenbench",
-        title="KitchenBench",
-        description=(
-            "10 bimanual kitchen-manipulation tasks: pick-place, stacking, slotted "
-            "insertion, granular pour & tool-scoop, lid open/seal, cloth folding, a "
-            "two-arm handover, and a multi-instance cutlery sort."
-        ),
-        repo="https://github.com/robocurve/kitchenbench",
-        install="pip install kitchenbench",  # pulls in inspect-robots from PyPI
-        task_keys=_KITCHENBENCH_TASKS,
-        tags=("kitchen", "bimanual", "manipulation"),
         bimanual=True,
         contributors=("robocurve",),
         status="alpha",

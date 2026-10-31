@@ -9,7 +9,7 @@ repository that:
    (and, if it ships a simulator/embodiment or policy,
    `inspect_robots.embodiments` / `inspect_robots.policies`).
 
-See [KitchenBench](https://github.com/robocurve/kitchenbench) as the reference
+See [StationeryBench](https://github.com/robocurve/stationerybench) as the reference
 implementation.
 
 ## List it in the catalog
@@ -20,13 +20,13 @@ and open a PR:
 
 ```python
 Benchmark(
-    name="kitchenbench",
-    title="KitchenBench",
-    description="10 bimanual kitchen-manipulation tasks: ...",
-    repo="https://github.com/robocurve/kitchenbench",
-    install="pip install kitchenbench",  # from PyPI; git URL only if unpublished
-    task_keys=("kitchenbench/place_cutlery", ...),  # the Inspect Robots task keys it registers
-    tags=("kitchen", "bimanual", "manipulation"),
+    name="stationerybench",
+    title="StationeryBench",
+    description="5 bimanual desk-stationery tasks, one fixed setup each: ...",
+    repo="https://github.com/robocurve/stationerybench",
+    install='pip install "stationerybench @ git+https://github.com/robocurve/stationerybench"',  # PyPI name once published
+    task_keys=("stationerybench/uncap_marker", ...),  # the Inspect Robots task keys it registers
+    tags=("stationery", "bimanual", "manipulation"),
     bimanual=True,
     contributors=("your-handle",),
     status="alpha",

@@ -4,7 +4,7 @@ WorldEvals is the **"Inspect Evals for robotics"**: a curated **catalog + CLI**
 indexing physical-AI benchmarks built on
 [Inspect Robots](https://github.com/robocurve/inspect-robots). Unlike Inspect Evals' monorepo,
 each benchmark here is **its own repo** (e.g.
-[KitchenBench](https://github.com/robocurve/kitchenbench)); WorldEvals is the
+[StationeryBench](https://github.com/robocurve/stationerybench)); WorldEvals is the
 lightweight index that ties them together.
 
 ## The one big idea
