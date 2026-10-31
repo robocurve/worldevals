@@ -6,7 +6,7 @@ build-backend = "hatchling.build"
 name = "worldevals"
 dynamic = ["version", "readme"]
 description = "A curated catalog of physical-AI benchmarks built on Inspect Robots — the Inspect Evals for robotics."
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 license = "MIT"
 license-files = ["LICENSE"]
 authors = [{ name = "RoboCurve" }]
@@ -16,7 +16,6 @@ classifiers = [
     "Intended Audience :: Science/Research",
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
@@ -68,7 +67,7 @@ fallback_version = "0.0.0"
 
 [tool.ruff]
 line-length = 100
-target-version = "py310"
+target-version = "py311"
 src = ["src", "tests"]
 
 [tool.ruff.lint]
@@ -83,7 +82,7 @@ ignore = ["D105", "D107"]
 known-first-party = ["worldevals"]
 
 [tool.mypy]
-python_version = "3.10"
+python_version = "3.11"
 strict = true
 files = ["src/worldevals", "scripts"]
 
