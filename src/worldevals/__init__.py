@@ -2,7 +2,7 @@
 
 A curated catalog of physical-AI benchmarks built on
 `Inspect Robots <https://github.com/robocurve/inspect-robots>`_. Each benchmark is its own
-repo (e.g. `KitchenBench <https://github.com/robocurve/kitchenbench>`_); this
+repo (e.g. `StationeryBench <https://github.com/robocurve/stationerybench>`_); this
 package indexes them and bridges "what exists" with "what's installed".
 """
 

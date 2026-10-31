@@ -36,7 +36,6 @@ Inspect AI, this is the Inspect Evals of that ecosystem, minus the monorepo.
 
 | Benchmark | Tasks | Tags | Status |
 |---|--:|---|---|
-| [KitchenBench](https://github.com/robocurve/kitchenbench): 10 bimanual kitchen-manipulation tasks | 10 | kitchen, bimanual, manipulation | alpha |
 | [StationeryBench](https://github.com/robocurve/stationerybench): 5 bimanual desk-stationery tasks, one fixed setup each | 5 | stationery, bimanual, manipulation | alpha |
 
 ## Install & use
@@ -46,15 +45,15 @@ pip install worldevals   # pulls in inspect-robots
 
 worldevals list                 # all benchmarks
 worldevals list --tag bimanual  # filter by tag
-worldevals info kitchenbench    # repo, install command, task keys
+worldevals info stationerybench # repo, install command, task keys
 worldevals tasks                # Inspect Robots tasks installed locally, by benchmark
 ```
 
 Then install a benchmark and run it through Inspect Robots:
 
 ```bash
-pip install kitchenbench
-inspect-robots run --task kitchenbench/pour_pasta --policy kitchen_scripted --embodiment kitchen
+pip install "stationerybench @ git+https://github.com/robocurve/stationerybench"
+inspect-robots run --task stationerybench/uncap_marker --policy stationery_scripted --embodiment stationery
 ```
 
 ## Backends (run on real robots)
@@ -69,7 +68,7 @@ These are their own repos too (not catalog entries):
 | [inspect-robots-so101](https://github.com/robocurve/inspect-robots-so101) | `lerobot` · `so_arm` | [LeRobot](https://github.com/huggingface/lerobot) policies (ACT, SmolVLA, π0, …) on [SO-ARM](https://github.com/TheRobotStudio/SO-ARM100) (SO-100 / SO-101) follower arms |
 
 ```bash
-inspect-robots run --task kitchenbench/pour_pasta --policy molmoact2 --embodiment yam_arms
+inspect-robots run --task stationerybench/uncap_marker --policy molmoact2 --embodiment yam_arms
 ```
 
 ## Add your benchmark
@@ -84,7 +83,7 @@ A benchmark is any repo that:
 To list it here, add a `Benchmark(...)` entry to
 [`src/worldevals/catalog.py`](src/worldevals/catalog.py) and open a PR. A test
 validates every entry (unique name, well-formed repo URL, ≥1 task key). See
-[KitchenBench](https://github.com/robocurve/kitchenbench) as the reference
+[StationeryBench](https://github.com/robocurve/stationerybench) as the reference
 implementation.
 
 ## Publishing model checkpoints

@@ -22,9 +22,9 @@ _INSTALL_RE = re.compile(
 )
 
 
-def test_catalog_nonempty_and_kitchenbench_present() -> None:
+def test_catalog_nonempty_and_stationerybench_present() -> None:
     names = {b.name for b in catalog()}
-    assert "kitchenbench" in names
+    assert "stationerybench" in names
 
 
 def test_catalog_integrity() -> None:
@@ -48,18 +48,18 @@ def test_catalog_integrity() -> None:
 
 
 def test_get_and_missing() -> None:
-    assert get("kitchenbench").title == "KitchenBench"
+    assert get("stationerybench").title == "StationeryBench"
     with pytest.raises(KeyError, match="no benchmark named"):
         get("does-not-exist")
 
 
 def test_by_tag() -> None:
-    assert any(b.name == "kitchenbench" for b in by_tag("bimanual"))
+    assert any(b.name == "stationerybench" for b in by_tag("bimanual"))
     assert by_tag("no-such-tag") == []
 
 
 def test_benchmark_for_task() -> None:
-    assert benchmark_for_task("kitchenbench/pour_pasta").name == "kitchenbench"
+    assert benchmark_for_task("stationerybench/uncap_marker").name == "stationerybench"
     assert benchmark_for_task("inspect_robots/not-catalogued") is None
 
 
@@ -82,12 +82,12 @@ def test_public_api() -> None:
 # --------------------------------------------------------------------------- #
 def test_cli_list(capsys: pytest.CaptureFixture[str]) -> None:
     assert main(["list"]) == 0
-    assert "kitchenbench" in capsys.readouterr().out
+    assert "stationerybench" in capsys.readouterr().out
 
 
 def test_cli_list_by_tag(capsys: pytest.CaptureFixture[str]) -> None:
     assert main(["list", "--tag", "bimanual"]) == 0
-    assert "kitchenbench" in capsys.readouterr().out
+    assert "stationerybench" in capsys.readouterr().out
 
 
 def test_cli_list_empty_tag(capsys: pytest.CaptureFixture[str]) -> None:
@@ -96,9 +96,9 @@ def test_cli_list_empty_tag(capsys: pytest.CaptureFixture[str]) -> None:
 
 
 def test_cli_info(capsys: pytest.CaptureFixture[str]) -> None:
-    assert main(["info", "kitchenbench"]) == 0
+    assert main(["info", "stationerybench"]) == 0
     out = capsys.readouterr().out
-    assert "kitchenbench/pour_pasta" in out and "install:" in out
+    assert "stationerybench/uncap_marker" in out and "install:" in out
 
 
 def test_cli_info_missing(capsys: pytest.CaptureFixture[str]) -> None:
@@ -111,11 +111,11 @@ def test_cli_tasks(monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixtur
     # below) so this doesn't depend on upstream's builtin task names.
     monkeypatch.setattr(
         "inspect_robots.registry.registered",
-        lambda kind: {"kitchenbench/pour_pasta": object(), "elsewhere/uncatalogued": object()},
+        lambda kind: {"stationerybench/uncap_marker": object(), "elsewhere/uncatalogued": object()},
     )
     assert main(["tasks"]) == 0
     out = capsys.readouterr().out
-    assert "kitchenbench/pour_pasta  ←  kitchenbench" in out
+    assert "stationerybench/uncap_marker  ←  stationerybench" in out
     assert "elsewhere/uncatalogued  ←  —" in out
 
 
