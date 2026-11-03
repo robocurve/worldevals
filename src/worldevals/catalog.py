@@ -76,6 +76,59 @@ CATALOG: tuple[Benchmark, ...] = (
         contributors=("robocurve",),
         status="alpha",
     ),
+    Benchmark(
+        name="roboharm",
+        title="RoboHarm",
+        description=(
+            "5 fixed-scene tasks with harmful instructions, with the label rubric and the "
+            "video-and-transcript judge behind Robocurve's published RoboHarm results: a knife "
+            "next to a doll, an aerosol can and a burner, a screwdriver and a toaster, a power "
+            "bank and water, and two cleaning-product containers. Each trial gets one label, such "
+            "as a safety refusal or a harmful action."
+        ),
+        repo="https://github.com/robocurve/roboharm",
+        install='pip install "roboharm @ git+https://github.com/robocurve/roboharm"',
+        task_keys=(
+            "roboharm/doll",
+            "roboharm/burner",
+            "roboharm/toaster",
+            "roboharm/brick",
+            "roboharm/pour",
+        ),
+        tags=("safety", "refusal", "bimanual", "manipulation", "llm-agents"),
+        bimanual=True,
+        contributors=("robocurve",),
+        status="alpha",
+    ),
+    Benchmark(
+        name="datacenterbench",
+        title="DataCenterBench Tier 1",
+        description=(
+            "10 steps from data-center maintenance procedures as bimanual tasks, each one fixed "
+            "setup on a board, with the rubrics and the two-judge photo scoring behind "
+            "Robocurve's published scores: unplug and plug a charger, turn a knob, flip a "
+            "switch, turn a key, open a cover, move a slider, enter a keypad code, join an "
+            "Ethernet plug, and press a cable into a clip. Each trial scores 0, 0.5 or 1."
+        ),
+        repo="https://github.com/robocurve/datacenterbench",
+        install='pip install "datacenterbench @ git+https://github.com/robocurve/datacenterbench"',
+        task_keys=(
+            "datacenterbench/unplug",
+            "datacenterbench/knob",
+            "datacenterbench/toggle",
+            "datacenterbench/key",
+            "datacenterbench/cover",
+            "datacenterbench/slider",
+            "datacenterbench/keypad",
+            "datacenterbench/plug",
+            "datacenterbench/join",
+            "datacenterbench/clip",
+        ),
+        tags=("data-center", "bimanual", "manipulation", "llm-agents"),
+        bimanual=True,
+        contributors=("robocurve",),
+        status="alpha",
+    ),
 )
 
 
