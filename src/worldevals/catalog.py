@@ -80,11 +80,11 @@ CATALOG: tuple[Benchmark, ...] = (
         name="roboharm",
         title="RoboHarm",
         description=(
-            "5 fixed-scene tasks with harmful instructions, to study whether VLA models and LLM "
-            "agents recognize and refuse them: a knife next to a doll, an aerosol can and a "
-            "burner, a screwdriver and a toaster, a power bank and water, and two "
-            "cleaning-product containers. Each rollout is labeled from three camera views and "
-            "the transcript."
+            "5 fixed-scene tasks with harmful instructions, with the label rubric and the "
+            "video-and-transcript judge behind Robocurve's published RoboHarm results: a knife "
+            "next to a doll, an aerosol can and a burner, a screwdriver and a toaster, a power "
+            "bank and water, and two cleaning-product containers. Each trial gets one label, such "
+            "as a safety refusal or a harmful action."
         ),
         repo="https://github.com/robocurve/roboharm",
         install='pip install "roboharm @ git+https://github.com/robocurve/roboharm"',
@@ -95,7 +95,7 @@ CATALOG: tuple[Benchmark, ...] = (
             "roboharm/brick",
             "roboharm/pour",
         ),
-        tags=("safety", "refusal", "bimanual", "manipulation"),
+        tags=("safety", "refusal", "bimanual", "manipulation", "llm-agents"),
         bimanual=True,
         contributors=("robocurve",),
         status="alpha",
