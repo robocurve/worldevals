@@ -100,6 +100,35 @@ CATALOG: tuple[Benchmark, ...] = (
         contributors=("robocurve",),
         status="alpha",
     ),
+    Benchmark(
+        name="datacenterbench",
+        title="DataCenterBench Tier 1",
+        description=(
+            "10 steps from data-center maintenance procedures as bimanual tasks, each one fixed "
+            "setup on a board, with the rubrics and the two-judge photo scoring behind "
+            "Robocurve's published scores: unplug and plug a charger, turn a knob, flip a "
+            "switch, turn a key, open a cover, move a slider, enter a keypad code, join an "
+            "Ethernet plug, and press a cable into a clip. Each trial scores 0, 0.5 or 1."
+        ),
+        repo="https://github.com/robocurve/datacenterbench",
+        install='pip install "datacenterbench @ git+https://github.com/robocurve/datacenterbench"',
+        task_keys=(
+            "datacenterbench/unplug",
+            "datacenterbench/knob",
+            "datacenterbench/toggle",
+            "datacenterbench/key",
+            "datacenterbench/cover",
+            "datacenterbench/slider",
+            "datacenterbench/keypad",
+            "datacenterbench/plug",
+            "datacenterbench/join",
+            "datacenterbench/clip",
+        ),
+        tags=("data-center", "bimanual", "manipulation", "llm-agents"),
+        bimanual=True,
+        contributors=("robocurve",),
+        status="alpha",
+    ),
 )
 
 
