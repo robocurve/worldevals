@@ -52,6 +52,30 @@ CATALOG: tuple[Benchmark, ...] = (
         contributors=("robocurve",),
         status="alpha",
     ),
+    Benchmark(
+        name="robodojo-rc",
+        title="RoboDojo-RC Tier 1",
+        description=(
+            "6 of RoboDojo's real-world manipulation tasks on bimanual YAM arms, with the pinned "
+            "rubrics and the video judge behind Robocurve's published scores: pack and pour "
+            "fruit, stack bowls, store objects in a safe, cap a pen, stand up bottles, and sort "
+            "objects into baskets. Each trial scores a rubric level from 0 to 1."
+        ),
+        repo="https://github.com/robocurve/robodojo-rc",
+        install='pip install "robodojo-rc @ git+https://github.com/robocurve/robodojo-rc"',
+        task_keys=(
+            "robodojo-rc/pack_and_pour_fruit",
+            "robodojo-rc/stack_bowls",
+            "robodojo-rc/store_in_safe",
+            "robodojo-rc/cap_pen",
+            "robodojo-rc/stand_up_bottles",
+            "robodojo-rc/sort_objects",
+        ),
+        tags=("robodojo", "bimanual", "manipulation", "llm-agents"),
+        bimanual=True,
+        contributors=("robocurve",),
+        status="alpha",
+    ),
 )
 
 

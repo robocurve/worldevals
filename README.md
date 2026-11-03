@@ -37,6 +37,7 @@ Inspect AI, this is the Inspect Evals of that ecosystem, minus the monorepo.
 | Benchmark | Tasks | Tags | Status |
 |---|--:|---|---|
 | [StationeryBench](https://github.com/robocurve/stationerybench): 5 bimanual desk-stationery tasks, one fixed setup each | 5 | stationery, bimanual, manipulation | alpha |
+| [RoboDojo-RC Tier 1](https://github.com/robocurve/robodojo-rc): 6 RoboDojo real-world tasks with the pinned rubrics and judge behind Robocurve's published scores | 6 | robodojo, bimanual, manipulation, llm-agents | alpha |
 
 ## Install & use
 
