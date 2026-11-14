@@ -6,7 +6,7 @@ build-backend = "hatchling.build"
 name = "worldevals"
 dynamic = ["version", "readme"]
 description = "A curated catalog of physical-AI benchmarks built on Inspect Robots — the Inspect Evals for robotics."
-requires-python = ">=3.11"
+requires-python = ">=3.11.5"
 license = "MIT"
 license-files = ["LICENSE"]
 authors = [{ name = "RoboCurve" }]
