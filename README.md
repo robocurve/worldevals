@@ -48,6 +48,8 @@ pip install worldevals   # pulls in inspect-robots
 
 worldevals list                 # all benchmarks
 worldevals list --tag bimanual  # filter by tag
+worldevals list --search uncap_marker    # find the benchmark for a task
+worldevals list --tag bimanual --json    # export matching benchmark records
 worldevals info stationerybench # repo, install command, task keys
 worldevals tasks                # Inspect Robots tasks installed locally, by benchmark
 ```

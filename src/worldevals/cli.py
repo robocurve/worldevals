@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 import argparse
+import json
 from collections.abc import Sequence
+from dataclasses import asdict
 
 from worldevals.catalog import benchmark_for_task, by_tag, catalog, get
 
@@ -18,6 +20,14 @@ def build_parser() -> argparse.ArgumentParser:
 
     p_list = sub.add_parser("list", help="list catalogued benchmarks")
     p_list.add_argument("--tag", help="only benchmarks carrying this tag")
+    p_list.add_argument(
+        "--search",
+        metavar="TEXT",
+        help="case-insensitive substring of a name, title, description, tag or task key",
+    )
+    p_list.add_argument(
+        "--json", action="store_true", help="print matching benchmark records as JSON"
+    )
 
     p_info = sub.add_parser("info", help="show details for one benchmark")
     p_info.add_argument("name")
@@ -26,10 +36,25 @@ def build_parser() -> argparse.ArgumentParser:
     return parser
 
 
-def _cmd_list(tag: str | None) -> int:
+def _cmd_list(tag: str | None, search: str | None, as_json: bool) -> int:
     benchmarks = by_tag(tag) if tag else list(catalog())
+    if search:
+        query = search.casefold()
+        benchmarks = [
+            b
+            for b in benchmarks
+            if any(
+                query in value.casefold()
+                for value in (b.name, b.title, b.description, *b.tags, *b.task_keys)
+            )
+        ]
+    if as_json:
+        print(json.dumps([asdict(b) for b in benchmarks], indent=2))
+        return 0
     if not benchmarks:
-        print("(no benchmarks)" if not tag else f"(no benchmarks tagged {tag!r})")
+        tag_filter = f" tagged {tag!r}" if tag else ""
+        search_filter = f" matching {search!r}" if search else ""
+        print(f"(no benchmarks{tag_filter}{search_filter})")
         return 0
     for b in benchmarks:
         print(f"{b.name}  [{b.status}]  {b.title}")
@@ -72,7 +97,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser = build_parser()
     args = parser.parse_args(argv)
     if args.command == "list":
-        return _cmd_list(args.tag)
+        return _cmd_list(args.tag, args.search, args.json)
     if args.command == "info":
         return _cmd_info(args.name)
     if args.command == "tasks":

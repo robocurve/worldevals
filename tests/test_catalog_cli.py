@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 import re
 
 import pytest
@@ -93,6 +94,46 @@ def test_cli_list_by_tag(capsys: pytest.CaptureFixture[str]) -> None:
 def test_cli_list_empty_tag(capsys: pytest.CaptureFixture[str]) -> None:
     assert main(["list", "--tag", "nope"]) == 0
     assert "no benchmarks tagged" in capsys.readouterr().out
+
+
+@pytest.mark.parametrize(
+    ("query", "expected", "excluded"),
+    [
+        ("UNCAP_MARKER", "stationerybench", "robodojo-rc"),
+        ("lifted bowl", "stationerybench", "robodojo-rc"),
+        ("StationeryBench", "stationerybench", "robodojo-rc"),
+        ("RoboDojo-RC Tier 1", "robodojo-rc", "stationerybench"),
+        ("LLM-AGENTS", "robodojo-rc", "stationerybench"),
+    ],
+)
+def test_cli_search_catalog(
+    query: str, expected: str, excluded: str, capsys: pytest.CaptureFixture[str]
+) -> None:
+    assert main(["list", "--search", query, "--tag", "bimanual"]) == 0
+    out = capsys.readouterr().out
+    assert expected in out
+    assert excluded not in out
+
+
+def test_cli_search_no_matching_tag(capsys: pytest.CaptureFixture[str]) -> None:
+    assert main(["list", "--search", "uncap_marker", "--tag", "data-center"]) == 0
+    assert "(no benchmarks tagged 'data-center' matching 'uncap_marker')" in capsys.readouterr().out
+    assert main(["list", "--search", "missing-task"]) == 0
+    assert "(no benchmarks matching 'missing-task')" in capsys.readouterr().out
+
+
+def test_cli_list_json(capsys: pytest.CaptureFixture[str]) -> None:
+    assert main(["list", "--json"]) == 0
+    records = json.loads(capsys.readouterr().out)
+    assert [record["name"] for record in records] == [b.name for b in catalog()]
+    assert main(["list", "--tag", "stationery", "--search", "UNCAP_MARKER", "--json"]) == 0
+    (record,) = json.loads(capsys.readouterr().out)
+    assert record["name"] == "stationerybench"
+    assert "stationerybench/uncap_marker" in record["task_keys"]
+    assert record["install"] == get("stationerybench").install
+    assert record["bimanual"] is True
+    assert main(["list", "--tag", "nope", "--json"]) == 0
+    assert json.loads(capsys.readouterr().out) == []
 
 
 def test_cli_info(capsys: pytest.CaptureFixture[str]) -> None:
